@@ -1,0 +1,13 @@
+{
+    "name": "ertem/projet_pmh",
+    "description": "Projet Ecole",
+    "authors": [
+        {
+            "name": "Ertem Dilmen",
+            "email": "ertem60@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "~2.0"
+    }
+}
