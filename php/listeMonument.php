@@ -12,5 +12,5 @@ $parametre =
 'metier'=> 'Developpeur'
 ];
 
-echo $twig->render("listeMonument.html.twig", $parametre);
+echo $twig->render("views/listeMonument.html.twig", $parametre);
 ?>
