@@ -1,5 +1,6 @@
 <?php 
 require_once '../vendor/autoload.php';
+include '../config/variables.inc.php';
 
 $loader = new Twig_Loader_Filesystem("../views/");
 $twig = new Twig_Environment($loader, array(
@@ -9,7 +10,8 @@ $parametre =
 [
 'nom' => 'Benj',
 'prenom'=> 'Le Boss',
-'metier'=> 'Developpeur'
+'metier'=> 'Developpeur',
+'path' => $path
 ];
 
 echo $twig->render("listeMonument.html.twig", $parametre);

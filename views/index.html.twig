@@ -9,17 +9,17 @@
   <title>Home - Listty</title>
 
   <!-- PLUGINS CSS STYLE -->
-  <link href="../plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-  <link href="../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-  <link href="../plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="../plugins/listtyicons/style.css" rel="stylesheet">
-  <link href="../plugins/bootstrapthumbnail/bootstrap-thumbnail.css" rel="stylesheet">
-  <link href="../plugins/datepicker/datepicker.min.css" rel="stylesheet">
-  <link href="../plugins/selectbox/select_option1.css" rel="stylesheet">
-  <link href="../plugins/owl-carousel/owl.carousel.min.css" rel="stylesheet">
-  <link href="../plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
-  <link href="../plugins/isotope/isotope.min.css" rel="stylesheet">
-  <link href="../plugins/map/css/map.css" rel="stylesheet">
+  <link href="{{ path }}plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+  <link href="{{ path }}plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="{{ path }}plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="{{ path }}plugins/listtyicons/style.css" rel="stylesheet">
+  <link href="{{ path }}plugins/bootstrapthumbnail/bootstrap-thumbnail.css" rel="stylesheet">
+  <link href="{{ path }}plugins/datepicker/datepicker.min.css" rel="stylesheet">
+  <link href="{{ path }}plugins/selectbox/select_option1.css" rel="stylesheet">
+  <link href="{{ path }}plugins/owl-carousel/owl.carousel.min.css" rel="stylesheet">
+  <link href="{{ path }}plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+  <link href="{{ path }}plugins/isotope/isotope.min.css" rel="stylesheet">
+  <link href="{{ path }}plugins/map/css/map.css" rel="stylesheet">
 
   <!-- GOOGLE FONT -->
   <link href="https://fonts.googleapis.com/css?family=Muli:200,300,400,600,700,800,900" rel="stylesheet">
@@ -28,11 +28,11 @@
   <link href="https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff" rel="stylesheet">
 
   <!-- CUSTOM CSS -->
-  <link href="../css/style.css" rel="stylesheet">
-  <link href="../css/styleMe.css" rel="stylesheet">
+  <link href="{{ path }}css/style.css" rel="stylesheet">
+  <link href="{{ path }}css/styleMe.css" rel="stylesheet">
 
   <!-- FAVICON -->
-  <link href="../img/favicon.png" rel="shortcut icon">
+  <link href="{{ path }}img/favicon.png" rel="shortcut icon">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -45,7 +45,7 @@
 
 <body class="body-wrapper">
 	<div><a id="cRetour" class="cInvisible" href="#pageTop"></a></div>
-  <div class="page-loader" style="background: url(img/preloader.gif) center no-repeat #fff;"></div>
+  <div class="page-loader" style="background: url({{ path }}img/preloader.gif) center no-repeat #fff;"></div>
   <div class="main-wrapper" style="height:100%">
     <!-- HEADER -->
     <header id="pageTop" class="header">
@@ -74,7 +74,7 @@
               <ul class="nav navbar-nav navbar-right">
 				  <li class="active dropdown singleDrop">
 
-				  <li><a href="/Projet-PMH-test-ertem/index2.php">Maps</a></li>
+				  <li><a href="{{ path }}php/listeMonument.php">Maps</a></li>
 
 				  </li>
                 <li class=" dropdown megaDropMenu">
@@ -107,7 +107,7 @@
                     <li class="col-sm-4 col-xs-12">
                       <ul class="list-unstyled">
                           <li class="mega-img">
-                              <a href=""><img src="img/works/works-big-3.png" alt=""></a>
+                              <a href=""><img src="{{ path }}img/works/works-big-3.png" alt=""></a>
                           </li>
                       </ul>
                     </li>
@@ -136,7 +136,7 @@
 
 
 <!-- BANNER SECTION -->
-<section class="clearfix homeBanner" style="background-image: url(img/banner/banner1.jpg); padding: 0; height: 100%;" >
+<section class="clearfix homeBanner" style="background-image: url({{ path }}img/banner/banner1.jpg); padding: 0; height: 100%;" >
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -147,7 +147,7 @@
 					  	<button id="btn2" class="btn btn-success btn-bgcolor-blue">With Name</button>
 						<button id="btn1" class="btn btn-success btn-bgcolor-grey">With Type/City</button>
 			          </div>
-					<form class="form-inline hide" action="index.html" method="GET" id="form1" style="margin-top: 6%"><!-- La EXCEPTIONNELLEMNT ON LE MET EN GET-->
+					<form class="form-inline hide" action="{{ path }}php/listeMonument.html" method="GET" id="form1" style="margin-top: 6%"><!-- La EXCEPTIONNELLEMNT ON LE MET EN GET-->
 						<div class="form-group" id="divcity">
 							<div class="input-group">
 								<div class="input-group-addon">City</div> <!-- METTRE UN NAME OBLIGATOIRE !!!! LA MAJUSCULE -->
@@ -610,24 +610,24 @@
   </div>
 
   <!-- JAVASCRIPTS -->
-  <script src="../plugins/jquery/jquery.min.js"></script>
-  <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
-  <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
-  <script src="../plugins/smoothscroll/SmoothScroll.min.js"></script>
-  <script src="../plugins/waypoints/waypoints.min.js"></script>
-  <script src="../plugins/counter-up/jquery.counterup.min.js"></script>
-  <script src="../plugins/datepicker/bootstrap-datepicker.min.js"></script>
-  <script src="../plugins/selectbox/jquery.selectbox-0.1.3.min.js"></script>
-  <script src="../plugins/owl-carousel/owl.carousel.min.js"></script>
-  <script src="../plugins/isotope/isotope.min.js"></script>
-  <script src="../plugins/fancybox/jquery.fancybox.pack.js"></script>
-  <script src="../plugins/isotope/isotope-triger.min.js"></script>
+  <script src="{{ path }}plugins/jquery/jquery.min.js"></script>
+  <script src="{{ path }}plugins/jquery-ui/jquery-ui.min.js"></script>
+  <script src="{{ path }}plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="{{ path }}plugins/smoothscroll/SmoothScroll.min.js"></script>
+  <script src="{{ path }}plugins/waypoints/waypoints.min.js"></script>
+  <script src="{{ path }}plugins/counter-up/jquery.counterup.min.js"></script>
+  <script src="{{ path }}plugins/datepicker/bootstrap-datepicker.min.js"></script>
+  <script src="{{ path }}plugins/selectbox/jquery.selectbox-0.1.3.min.js"></script>
+  <script src="{{ path }}plugins/owl-carousel/owl.carousel.min.js"></script>
+  <script src="{{ path }}plugins/isotope/isotope.min.js"></script>
+  <script src="{{ path }}plugins/fancybox/jquery.fancybox.pack.js"></script>
+  <script src="{{ path }}plugins/isotope/isotope-triger.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58"></script>
-  <script src="../plugins/map/js/rich-marker.js"></script>
-  <script src="../plugins/map/js/infobox_packed.js"></script>
-  <script src="../js/single-map.js"></script>
-  <script src="../js/map.js"></script>
-  <script src="../js/custom.js"></script>
+  <script src="{{ path }}plugins/map/js/rich-marker.js"></script>
+  <script src="{{ path }}plugins/map/js/infobox_packed.js"></script>
+  <script src="{{ path }}js/single-map.js"></script>
+  <script src="{{ path }}js/map.js"></script>
+  <script src="{{ path }}js/custom.js"></script>
   <script type="text/javascript">
 	
 	$("#btn2").click(function(){
