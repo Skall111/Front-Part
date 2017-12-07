@@ -1,7 +1,7 @@
 <?php 
-require_once 'vendor/autoload.php'; 
+require_once '../vendor/autoload.php';
 
-$loader = new Twig_Loader_Filesystem("template/");
+$loader = new Twig_Loader_Filesystem("../views/");
 $twig = new Twig_Environment($loader, array(
    //  "cache" => "/path/to/compilation_cache",
     ));
@@ -12,5 +12,5 @@ $parametre =
 'metier'=> 'Developpeur'
 ];
 
-echo $twig->render("views/index.html.twig", $parametre);
+echo $twig->render("index.html.twig", $parametre);
 ?>
