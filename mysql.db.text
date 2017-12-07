@@ -1,0 +1,336 @@
+
+CREATE TABLE `Afficher` (
+  `Id_Monument` int(11) NOT NULL DEFAULT '0',
+  `Id_User` int(11) NOT NULL DEFAULT '0',
+  `Id_Comments` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Avoir`
+--
+
+CREATE TABLE `Avoir` (
+  `Id_Monument` int(11) NOT NULL DEFAULT '0',
+  `Id_Type` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `Avoir`
+--
+
+INSERT INTO `Avoir` (`Id_Monument`, `Id_Type`) VALUES
+(30, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Calendar`
+--
+
+CREATE TABLE `Calendar` (
+  `Id` int(11) NOT NULL,
+  `Name` varchar(80) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `Calendar`
+--
+
+INSERT INTO `Calendar` (`Id`, `Name`) VALUES
+(1, 'Dimanche'),
+(2, 'Lundi'),
+(3, 'Mardi'),
+(4, 'Mercredi'),
+(5, 'Jeudi'),
+(6, 'Vendredi'),
+(7, 'Samedi');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `City`
+--
+
+CREATE TABLE `City` (
+  `Id` int(11) NOT NULL,
+  `Name` varchar(80) NOT NULL,
+  `Cp` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `City`
+--
+
+INSERT INTO `City` (`Id`, `Name`, `Cp`) VALUES
+(1, 'Paris', 75001),
+(2, 'Creteil', 94000),
+(3, 'Saint-Denis', 93);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Comments`
+--
+
+CREATE TABLE `Comments` (
+  `Id` int(11) NOT NULL,
+  `Comments` varchar(300) DEFAULT NULL,
+  `Rating` float(3,1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `Comments`
+--
+
+INSERT INTO `Comments` (`Id`, `Comments`, `Rating`) VALUES
+(1, 'Amazing  marvel Construct  by humans. Mankind proved their talent 100 yrs back. \nThe Eiffel Tower is a wrought iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower. \n\nyou have to stand in the long Q. but w', 5.0),
+(2, 'This isn’t any old tower. It’s a must see tower if you’re in Paris. It’s surrounded by grassy fields which are perfect to chill in and have a bite to eat. The tower is absolutely stunning at night. \n\nThe lines to enter the tower can get long and large crowds can be found at the towers base. \n\nGettin', 5.0),
+(7, 'Still a bustling Disneyland of various art works. Nearly impossible to see everything so just relax, go with the flow & enjoy. If you have plenty of time, that is. Otherwise plan your day by buying your tickets online, collect & join the queue early. Once inside rush to the artworks you really want ', 4.0),
+(8, 'Beautiful and breathtaking is what I would most describe the Louvre. Timeless artwork, sculpures, paintings. The Louvre contains so much exquisite history. Every artist unique in their own way.. I am glad I saw the Mona Lisa. I really enjoyed the ancient Egyptian and Greek mythology areas with Diane', 5.0),
+(9, 'The Louvre is so massive and fun that I spent two days here! It was truly amazing to see and admire historical paintings and statues that paved the way for our society’s entire world of art, as well as eat. Seeing the Mona Lisa was really great, too, though the protective glass barrier around the pa', 5.0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Image`
+--
+
+CREATE TABLE `Image` (
+  `Id` int(11) NOT NULL,
+  `Url` varchar(300) NOT NULL,
+  `Id_Monument` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Monument`
+--
+
+CREATE TABLE `Monument` (
+  `Id` int(11) NOT NULL,
+  `Name` varchar(80) NOT NULL,
+  `Lat` float(25,20) DEFAULT NULL,
+  `Lon` float(25,20) DEFAULT NULL,
+  `Id_City` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `Monument`
+--
+
+INSERT INTO `Monument` (`Id`, `Name`, `Lat`, `Lon`, `Id_City`) VALUES
+(30, 'TEST', NULL, NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Ouvrir`
+--
+
+CREATE TABLE `Ouvrir` (
+  `Id_Monument` int(11) NOT NULL DEFAULT '0',
+  `Id_Calendar` int(11) NOT NULL DEFAULT '0',
+  `Matin_Debut` varchar(50) DEFAULT NULL,
+  `Matin_Fin` varchar(50) DEFAULT NULL,
+  `Midi_Debut` varchar(50) DEFAULT NULL,
+  `Midi_Fin` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Type`
+--
+
+CREATE TABLE `Type` (
+  `Id` int(11) NOT NULL,
+  `Name` varchar(80) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `Type`
+--
+
+INSERT INTO `Type` (`Id`, `Name`) VALUES
+(1, 'Historique'),
+(23, 'Musée'),
+(24, 'Restaurant'),
+(25, 'TEST JAVA FINAL '),
+(26, 'TEST JAVA FINAL: FINALEMENT BONJ');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `User`
+--
+
+CREATE TABLE `User` (
+  `Id` int(11) NOT NULL,
+  `Name` varchar(80) DEFAULT NULL,
+  `Surname` varchar(80) DEFAULT NULL,
+  `Password` varchar(64) DEFAULT NULL,
+  `Token_Connect` varchar(300) DEFAULT NULL,
+  `Mail` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `User`
+--
+
+INSERT INTO `User` (`Id`, `Name`, `Surname`, `Password`, `Token_Connect`, `Mail`) VALUES
+(1, 'User', 'Google', NULL, NULL, NULL);
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `Afficher`
+--
+ALTER TABLE `Afficher`
+  ADD PRIMARY KEY (`Id_Monument`,`Id_User`,`Id_Comments`),
+  ADD KEY `Id_Comments` (`Id_Comments`),
+  ADD KEY `Id_User` (`Id_User`);
+
+--
+-- Index pour la table `Avoir`
+--
+ALTER TABLE `Avoir`
+  ADD PRIMARY KEY (`Id_Monument`,`Id_Type`),
+  ADD KEY `Id_Type` (`Id_Type`);
+
+--
+-- Index pour la table `Calendar`
+--
+ALTER TABLE `Calendar`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Index pour la table `City`
+--
+ALTER TABLE `City`
+  ADD PRIMARY KEY (`Id`),
+  ADD UNIQUE KEY `Name` (`Name`),
+  ADD UNIQUE KEY `Cp` (`Cp`);
+
+--
+-- Index pour la table `Comments`
+--
+ALTER TABLE `Comments`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Index pour la table `Image`
+--
+ALTER TABLE `Image`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `Id_Monument` (`Id_Monument`);
+
+--
+-- Index pour la table `Monument`
+--
+ALTER TABLE `Monument`
+  ADD PRIMARY KEY (`Id`),
+  ADD UNIQUE KEY `Id` (`Id`),
+  ADD UNIQUE KEY `Name` (`Name`),
+  ADD KEY `Id_City` (`Id_City`);
+
+--
+-- Index pour la table `Ouvrir`
+--
+ALTER TABLE `Ouvrir`
+  ADD PRIMARY KEY (`Id_Monument`,`Id_Calendar`),
+  ADD KEY `Id_Calendar` (`Id_Calendar`);
+
+--
+-- Index pour la table `Type`
+--
+ALTER TABLE `Type`
+  ADD PRIMARY KEY (`Id`),
+  ADD UNIQUE KEY `Name` (`Name`);
+
+--
+-- Index pour la table `User`
+--
+ALTER TABLE `User`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `City`
+--
+ALTER TABLE `City`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `Comments`
+--
+ALTER TABLE `Comments`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT pour la table `Image`
+--
+ALTER TABLE `Image`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `Monument`
+--
+ALTER TABLE `Monument`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT pour la table `Type`
+--
+ALTER TABLE `Type`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT pour la table `User`
+--
+ALTER TABLE `User`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `Afficher`
+--
+ALTER TABLE `Afficher`
+  ADD CONSTRAINT `afficher_ibfk_4` FOREIGN KEY (`Id_Monument`) REFERENCES `Monument` (`Id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `afficher_ibfk_5` FOREIGN KEY (`Id_User`) REFERENCES `User` (`Id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `Avoir`
+--
+ALTER TABLE `Avoir`
+  ADD CONSTRAINT `Id_Type` FOREIGN KEY (`Id_Type`) REFERENCES `Type` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `avoir_ibfk_3` FOREIGN KEY (`Id_Monument`) REFERENCES `Monument` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `Image`
+--
+ALTER TABLE `Image`
+  ADD CONSTRAINT `image_ibfk_1` FOREIGN KEY (`Id_Monument`) REFERENCES `Monument` (`Id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `Monument`
+--
+ALTER TABLE `Monument`
+  ADD CONSTRAINT `Id_City` FOREIGN KEY (`Id_City`) REFERENCES `City` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `Ouvrir`
+--
+ALTER TABLE `Ouvrir`
+  ADD CONSTRAINT `ouvrir_ibfk_2` FOREIGN KEY (`Id_Calendar`) REFERENCES `Calendar` (`Id`),
+  ADD CONSTRAINT `ouvrir_ibfk_3` FOREIGN KEY (`Id_Monument`) REFERENCES `Monument` (`Id`) ON DELETE CASCADE;
