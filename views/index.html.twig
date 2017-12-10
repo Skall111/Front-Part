@@ -153,9 +153,9 @@
 								<div class="input-group-addon">City</div> <!-- METTRE UN NAME OBLIGATOIRE !!!! LA MAJUSCULE -->
 								<!--<input type="text" class="form-control" name="city" id="findItem" placeholder="What are you looking for?">-->
 								<select class="form-control" name="city" name="city">
-									<option>City 1 </option>
-									<option>City 2 </option>
-									<option>City 3 </option>
+									{% for City in City %}
+									<option value="{{ City.Id }}">{{ City.Name }}</option>
+									{% endfor %}
 								</select>
 								<div class="input-group-addon addon-right"></div>
 							</div>
@@ -165,9 +165,9 @@
 								<div class="input-group-addon">Type</div>
 								<!-- <input type="text" class="form-control" name="type" id="nearLocation" placeholder="Type of monument"> -->
 								<select class="form-control" name="type" name="type">
-									<option>Type 1 </option>
-									<option>Type 2 </option>
-									<option>Type 3 </option>
+									{% for Type in Type %}
+									<option value="{{ Type.Id }}" >{{ Type.Name }} </option>
+									{% endfor %}
 								</select>
 								<div class="input-group-addon addon-right"><i class="icon-listy icon-target" aria-hidden="true"></i></div>
 							</div>
@@ -228,7 +228,7 @@
 							<div class="col-md-4 col-sm-6 col-xs-12">
 								<div class="thingsBox">
 									<div class="thingsImage">
-										<img src="img/things/things-1.jpg" alt="Image things">
+										<img src="{{ path }}img/things/things-1.jpg" alt="Image things">
 										<div class="thingsMask">
 											<ul class="list-inline rating">
 												<li><i class="fa fa-star" aria-hidden="true"></i></li>
@@ -255,7 +255,7 @@
 							<div class="col-md-4 col-sm-6 col-xs-12">
 								<div class="thingsBox">
 									<div class="thingsImage">
-										<img src="img/things/things-2.jpg" alt="Image things">
+										<img src="{{ path }}img/things/things-2.jpg" alt="Image things">
 										<div class="thingsMask">
 											<ul class="list-inline rating">
 												<li><i class="fa fa-star" aria-hidden="true"></i></li>
@@ -282,7 +282,7 @@
 							<div class="col-md-4 col-sm-6 col-xs-12">
 								<div class="thingsBox">
 									<div class="thingsImage">
-										<img src="img/things/things-3.jpg" alt="Image things">
+										<img src="{{ path }}img/things/things-3.jpg" alt="Image things">
 										<div class="thingsMask">
 											<ul class="list-inline rating">
 												<li><i class="fa fa-star" aria-hidden="true"></i></li>
@@ -309,7 +309,7 @@
 							<div class="col-md-4 col-sm-6 col-xs-12">
 								<div class="thingsBox">
 									<div class="thingsImage">
-										<img src="img/things/things-1.jpg" alt="Image things">
+										<img src="{{ path }}img/things/things-1.jpg" alt="Image things">
 										<div class="thingsMask">
 											<ul class="list-inline rating">
 												<li><i class="fa fa-star" aria-hidden="true"></i></li>
@@ -336,7 +336,7 @@
 							<div class="col-md-4 col-sm-6 col-xs-12">
 								<div class="thingsBox">
 									<div class="thingsImage">
-										<img src="img/things/things-2.jpg" alt="Image things">
+										<img src="{{ path }}img/things/things-2.jpg" alt="Image things">
 										<div class="thingsMask">
 											<ul class="list-inline rating">
 												<li><i class="fa fa-star" aria-hidden="true"></i></li>
@@ -363,7 +363,7 @@
 							<div class="col-md-4 col-sm-6 col-xs-12">
 								<div class="thingsBox">
 									<div class="thingsImage">
-										<img src="img/things/things-3.jpg" alt="Image things">
+										<img src="{{ path }}img/things/things-3.jpg" alt="Image things">
 										<div class="thingsMask">
 											<ul class="list-inline rating">
 												<li><i class="fa fa-star" aria-hidden="true"></i></li>
@@ -390,7 +390,7 @@
 							<div class="col-md-4 col-sm-6 col-xs-12">
 								<div class="thingsBox">
 									<div class="thingsImage">
-										<img src="img/things/things-1.jpg" alt="Image things">
+										<img src="{{ path }}img/things/things-1.jpg" alt="Image things">
 										<div class="thingsMask">
 											<ul class="list-inline rating">
 												<li><i class="fa fa-star" aria-hidden="true"></i></li>
@@ -417,7 +417,7 @@
 							<div class="col-md-4 col-sm-6 col-xs-12">
 								<div class="thingsBox">
 									<div class="thingsImage">
-										<img src="img/things/things-2.jpg" alt="Image things">
+										<img src="{{ path }}img/things/things-2.jpg" alt="Image things">
 										<div class="thingsMask">
 											<ul class="list-inline rating">
 												<li><i class="fa fa-star" aria-hidden="true"></i></li>
@@ -459,7 +459,7 @@
 		<div class="row">
 			<div class="col-sm-4 col-xs-12">
 				<div class="thumbnail text-center worksContent">
-					<img src="img/works/works-1.png" alt="Image works">
+					<img src="{{ path }}img/works/works-1.png" alt="Image works">
 					<div class="caption">
 						<a href="how-it-works.html"><h3>Find a Monument</h3></a>
 						<p>Whether you know the name or not, find the monument you are looking for.</p>
@@ -468,7 +468,7 @@
 			</div>
 			<div class="col-sm-4 col-xs-12">
 				<div class="thumbnail text-center worksContent">
-					<img src="img/works/works-2.png" alt="Image works">
+					<img src="{{ path }}img/works/works-2.png" alt="Image works">
 					<div class="caption">
 						<a href="how-it-works.html"><h3>Plan ahead and make up your mind </h3></a>
 						<p>Consult the opening hours and see their popularity with users of " NOm DU SITE ".</p>
@@ -477,7 +477,7 @@
 			</div>
 			<div class="col-sm-4 col-xs-12">
 				<div class="thumbnail text-center worksContent">
-					<img src="img/works/works-3.png" alt="Image works">
+					<img src="{{ path }}img/works/works-3.png" alt="Image works">
 					<div class="caption">
 						<a href="how-it-works.html"><h3>Give your opinion and Rate !</h3></a>
 						<p>Help other visitors to have a good time and record the monuments you visited. You can even post a comment to say what you think!</p>
@@ -494,7 +494,7 @@
 </section>
 
     <!-- FOOTER -->
-    <footer style="background-image: url(img/background/bg-footer.jpg);">
+    <footer style="background-image: url({{ path }}img/background/bg-footer.jpg);">
       <!-- FOOTER INFO -->
       <div class="clearfix footerInfo">
         <div class="container">
