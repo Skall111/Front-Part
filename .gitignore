@@ -1,2 +1,3 @@
-php/Class/Variables.specs.php
-.idea/*
+/php/Class/Variables.specs.php
+
+/.idea/
