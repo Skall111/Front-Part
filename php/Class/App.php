@@ -5,7 +5,7 @@ class App{
 
 	static function getDatabase(){
 		if(!self::$db){
-			self::$db = new Database('root','root','Monument' ,'localhost');
+			self::$db = new Database('root','root','Monument','localhost');
 		}
 		return self::$db;
 	}
