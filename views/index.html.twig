@@ -385,16 +385,53 @@
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-primary btn-block">Log In</button>
+				<a data-toggle="modal" data-dismiss="modal" data-target="#forgotModal">Forgot Pasword</a>
             </div>
             <div class="checkbox">
               <label><input type="checkbox"> Remember me</label>
-					<button type="button" class="btn btn-danger" style="color: red;" id="btnforgot">Forgot Paswword</button>
 
             </div>
 		  </form>
 		</div>
 	</div>
   </div>
+  </div>
+{#FIN#}
+
+	<!-- FORGOT PASSWORD  MODAL -->
+	<div id="forgotModal" tabindex="-1" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content" id="form-connect">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Forgot blabla</h4>
+				</div>
+				<div class="modal-body">
+					<form class="loginForm" id="form-connect">
+						<div class="form-group">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<input type="email" class="form-control" id="email" placeholder="Email">
+						</div>
+						<div class="form-group">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+							<input type="password" class="form-control" id="pwd" placeholder="Password">
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary btn-block">Log In</button>
+							<a>Forgot Pasword</a>
+						</div>
+						<div class="checkbox">
+							<label><input type="checkbox"> Remember me</label>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	{#FIN#}
 {% block script %}
   <script type="text/javascript">
 	
