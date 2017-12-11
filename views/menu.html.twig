@@ -1,0 +1,102 @@
+{%  extends 'footer.html.twig'%}
+{% block menu %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- SITE TITTLE -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home - Listty</title>
+
+    <!-- PLUGINS CSS STYLE -->
+    <link href="{{ path }}plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+    <link href="{{ path }}plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ path }}plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ path }}plugins/listtyicons/style.css" rel="stylesheet">
+    <link href="{{ path }}plugins/bootstrapthumbnail/bootstrap-thumbnail.css" rel="stylesheet">
+    <link href="{{ path }}plugins/datepicker/datepicker.min.css" rel="stylesheet">
+    <link href="{{ path }}plugins/selectbox/select_option1.css" rel="stylesheet">
+    <link href="{{ path }}plugins/owl-carousel/owl.carousel.min.css" rel="stylesheet">
+    <link href="{{ path }}plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+    <link href="{{ path }}plugins/isotope/isotope.min.css" rel="stylesheet">
+    <link href="{{ path }}plugins/map/css/map.css" rel="stylesheet">
+
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:200,300,400,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff" rel="stylesheet">
+
+    <!-- CUSTOM CSS -->
+    <link href="{{ path }}css/style.css" rel="stylesheet">
+    <link href="{{ path }}css/styleMe.css" rel="stylesheet">
+
+    <!-- FAVICON -->
+    <link href="{{ path }}img/favicon.png" rel="shortcut icon">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="body-wrapper">
+<div><a id="cRetour" class="cInvisible" href="#pageTop"></a></div>
+<div class="page-loader" style="background: url({{ path }}img/preloader.gif) center no-repeat #fff;"></div>
+<div class="main-wrapper" style="height:100%">
+    <!-- HEADER -->
+    <header id="pageTop" class="header">
+
+        <!-- TOP INFO BAR -->
+
+        <div class="nav-wrapper">
+
+            <!-- NAVBAR -->
+            <nav id="menuBar" class="navbar navbar-default lightHeader" role="navigation">
+                <div class="container">
+
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a  href="{{ path }}php/"><img class="logo" src="{{ path }}img/logo-pmh.png" width="45px" height="55px" alt="Visit Tour"></a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active dropdown singleDrop">
+
+                            <li><a href="{{ path }}php/listeMonument.php">MAPS</a></li>
+
+                            </li>
+                            <li class="active dropdown singleDrop">
+
+                            <li><a href="{{ path }}php/listeMonument.php">ABOUT</a></li>
+
+                            </li>
+                            <li class="active dropdown singleDrop">
+
+                            <li><a href="{{ path }}php/listeMonument.php">CONTACT US</a></li>
+
+                            </li>
+
+                    </div>
+                    <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#loginModal"> <span>Register / Sign in</span> </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+{% endblock %}
+    {% block content %} {% endblock %}
+

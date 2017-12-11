@@ -121,3 +121,11 @@ a#cRetour.cVisible{
   padding: 20px 30px; }
   #searchModal2 .modal-footer p {
     margin-bottom: 0; }
+  .logo{
+      margin-top: 40%;
+  }
+@media (max-width: 768px) {
+    .logo{
+        display: none;
+    }
+}
