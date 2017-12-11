@@ -368,13 +368,13 @@
     <div class="modal-dialog">
 
       <!-- Modal content-->
-      <div class="modal-content">
+      <div class="modal-content" id="form-connect">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Log In to your Account</h4>
         </div>
         <div class="modal-body">
-          <form class="loginForm">
+          <form class="loginForm" id="form-connect">
             <div class="form-group">
               <i class="fa fa-envelope" aria-hidden="true"></i>
               <input type="email" class="form-control" id="email" placeholder="Email">
@@ -388,17 +388,12 @@
             </div>
             <div class="checkbox">
               <label><input type="checkbox"> Remember me</label>
-              <a href="#" class="pull-right link">Fogot Password?</a>
+					<button type="button" class="btn btn-danger" style="color: red;" id="btnforgot">Forgot Paswword</button>
+
             </div>
-
-          </form>
-        </div>
-        <div class="modal-footer">
-          <p>Don’t have an Account? <a href="#" class="link">Sign up</a></p>
-        </div>
-      </div>
-
-    </div>
+		  </form>
+		</div>
+	</div>
   </div>
 {% block script %}
   <script type="text/javascript">
@@ -441,6 +436,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("cRetour").className = (window.pageYOffset > 100) ? "cVisible" : "cInvisible";
   };
 });
+
 
   </script>
 	{% endblock %}
