@@ -241,3 +241,5 @@ var owl = $('.owl-carousel.partnersLogoSlider');
     $(this).parent().hide();
   });
 });
+//============================== Register Modal =====================================
+
