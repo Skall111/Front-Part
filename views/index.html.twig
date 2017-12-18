@@ -4,7 +4,7 @@
 
 
 <!-- BANNER SECTION -->
-<section class="clearfix homeBanner" style="background-image: url({{ path }}img/banner/banner1.jpg); padding: 0; height: 100%;" >
+<section class="clearfix homeBanner" style="background-image: url({{ path }}img/banner/banner1.jpg); padding: 0; height: 100%; width: 100%;" >
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -388,8 +388,8 @@
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary btn-block">Log In</button>
-							<a data-toggle="modal" data-dismiss="modal" data-target="#forgotModal">Forgot Pasword</a>
-							<a style="margin-left: 45%;" data-toggle="modal" data-dismiss="modal" data-target="#registerModal">Registrer</a>
+							<a data-toggle="modal" data-dismiss="modal" data-target="#forgotModal">Forgot Password</a>
+							<a style="margin-left: 45%;" data-toggle="modal" data-dismiss="modal" data-target="#registerModal">Register</a>
 						</div>
 
 					</form>
@@ -426,7 +426,7 @@
 							Continue
 							</button>
 						<p class="help-block">
-							<a style="margin-left: 80%;" data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Account Access</a>
+							<a class="backAccount"  data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Account Access</a>
 						</p>
 					</fieldset>
 				</form>
@@ -457,7 +457,7 @@
 					<input class="form-control" name="password" placeholder="New Password" type="password" />
 					<br />
 					<br />
-					<button class="btn btn-lg btn-primary btn-block" type="submit">
+					<button class="btn btn-lg btn-primary btn-block" type="submit" data-toggle="modal" data-target="#congratModal">
 						Sign up</button>
 				</form>
 			</div>
@@ -470,6 +470,32 @@
 
     {#FIN#}
 
+	<div id="congratModal" tabindex="-1" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content" id="form-connect">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Congratulation !!</h4>
+				</div>
+				<form accept-charset="UTF-8" role="form" id="login-recordar" method="post">
+					<fieldset style="padding: 5%;">
+        				<span class="help-block">
+          					Thank you for creating your account !!!
+          					<br>
+							You can now note down the monuments you have visited and even leave a note to help others !!
+        				</span>
+
+						<button type="submit" class="btn btn-primary btn-block" id="btn-olvidado" data-toggle="modal" data-target="#loginModal">
+							Connection
+						</button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+    {#FIN#}
 {% block script %}
   <script type="text/javascript">
 	

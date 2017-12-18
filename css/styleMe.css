@@ -130,4 +130,23 @@ a#cRetour.cVisible{
     }
 }
 
-/* ================ Register modal ==================== */
+/* ================ Congrat Modal ==================== */
+
+@media (min-width: 769px) {
+    #congratModal{
+        margin-top: 12%;
+    }
+}
+
+@media (max-width: 768px) {
+    #congratModal{
+        margin-top: 50%;
+    }
+}
+
+
+
+
+
+
+
