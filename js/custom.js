@@ -15,7 +15,7 @@ jQuery(document).ready(function(){
 
       $(window).scroll(function(){
         if( main_area.hasClass('bb-fixed-header') && ($(this).scrollTop() === 0 || $(this).width() < 750)){
-          main_area.removeClass('bb-fixed-header').appendTo(header_area);
+          // main_area.removeClass('bb-fixed-header').appendTo(header_area);
           navigation.animate({'margin-top': original.nav_top}, {duration: 300, queue: false, complete: function(){
             header_area.css('height', 'auto');
           }});
