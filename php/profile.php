@@ -10,9 +10,7 @@ $twig = new Twig_Environment($loader, array(
 ));
 $db = App::getDatabase();
 
-//$listeMonument = '';
 
-    //$db->query("SELECT * FROM Monument ")->fetchAll();
 
 
 $parametre =
@@ -21,15 +19,7 @@ $parametre =
         'prenom'=> 'Le Boss',
         'metier'=> 'Developpeur',
         'path'=> $path,
-        //'Monument' => $listeMonument
     ];
 
 echo $twig->render("profile.html.twig", $parametre);
 ?>
-// Et voila
-/**
- * Created by IntelliJ IDEA.
- * User: Ertem
- * Date: 19/12/2017
- * Time: 10:21
- */

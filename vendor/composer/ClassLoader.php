@@ -348,7 +348,7 @@ class ClassLoader
             }
         }
 
-        $file = $this->findFileWithExtension($class, 'profile.php');
+        $file = $this->findFileWithExtension($class, '.php');
 
         // Search for Hack files if we are running on HHVM
         if (false === $file && defined('HHVM_VERSION')) {

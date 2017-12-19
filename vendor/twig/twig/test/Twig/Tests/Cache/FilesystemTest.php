@@ -172,7 +172,7 @@ class Twig_Tests_Cache_FilesystemTest extends \PHPUnit\Framework\TestCase
 
     public function provideDirectories()
     {
-        $pattern = '#a/b/[a-zA-Z0-9]+/[a-zA-Z0-9]+profile.php$#';
+        $pattern = '#a/b/[a-zA-Z0-9]+/[a-zA-Z0-9]+.php$#';
 
         return array(
             array($pattern, 'a/b'),

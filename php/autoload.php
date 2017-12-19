@@ -2,5 +2,5 @@
 spl_autoload_register('app_autoload');
 
 function app_autoload($class){
-    require "Class/$classprofile.php";
+    require "Class/$class.php";
 }
