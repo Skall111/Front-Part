@@ -37,7 +37,7 @@ class Twig_Tests_Loader_FilesystemTest extends \PHPUnit\Framework\TestCase
     public function getSecurityTests()
     {
         return array(
-            array("AutoloaderTest\0.php"),
+            array("AutoloaderTest\0profile.php"),
             array('..\\AutoloaderTest.php'),
             array('..\\\\\\AutoloaderTest.php'),
             array('../AutoloaderTest.php'),
