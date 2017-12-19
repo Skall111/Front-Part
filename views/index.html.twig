@@ -417,6 +417,13 @@
           					<br>
 							We'll send you an email with instructions to choose a new password.
         				</span>
+						{% if error is not null  %}
+							<div class="alert alert-info">
+							{% for error in error %}
+								{{ error }}<br>
+							{% endfor %}
+							</div>
+						{% endif %}
 						<div class="form-group input-group">
           					<span class="input-group-addon">
             					@
@@ -429,7 +436,7 @@
 							Continue
 							</button>
 						<p class="help-block">
-							<a class="backAccount"  data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Account Access</a>
+							<a class="backAccount"  data-toggle="modal" data-target="#loginModal">Account Access</a>
 						</p>
 					</fieldset>
 				</form>
@@ -494,7 +501,7 @@
 							You can now note down the monuments you have visited and even leave a note to help others !!
         				</span>
 
-						<button type="submit" class="btn btn-primary btn-block" id="btn-olvidado" data-toggle="modal" data-target="#loginModal">
+						<button type="submit" class="btn btn-primary btn-block" id="btn-olvidado"  data-toggle="modal" data-dismiss="modal" data-target="#loginModal">
 							Connection
 						</button>
 					</fieldset>
@@ -522,6 +529,9 @@
 		{% if valid == 1 %}
         $('#congratModal').modal('toggle');
 		{% endif  %}
+		{% if error is not null  %}
+        $('#forgotModal').modal('toggle');
+		{% endif %}
 
 
 //Fonction ANIMATION SCROOL 
