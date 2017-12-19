@@ -164,11 +164,6 @@ a#cRetour.cVisible{
         padding-top: 8%;
     } }
 
-#map-canvas2 {
-    height: 649px;
-    margin-top: 4%;
-}
-
 
 @media (max-width: 768px) {
     #formType{
