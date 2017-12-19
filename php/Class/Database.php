@@ -27,5 +27,8 @@ class Database{
     public function lastInsertId(){
         return $this->pdo->lastInsertId();
     }
+    public function quote($var){
+        return $this->pdo->quote($var);
+    }
 
 }
