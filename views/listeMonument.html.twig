@@ -2,14 +2,14 @@
 {% block content %}
 <!-- MAP SECTION -->
 <section class="clearfix p0">
-	<div id="map-canvas"></div>
+	<div id="map-canvas" style="margin-top: 84px; height: 600px;" ></div>
 </section>
 
 <!-- CATEGORY SEARCH SECTION -->
 <section class="clearfix searchArea banerInfo" style="padding: 1%; ">
 	<div>
-		<button id="btn4" class="btn btn-primary btn-bgcolor-blue4" style="width: 20%;" data-toggle="modal" data-target="#searchModal">With Name</button>
-		<button id="btn3" class="btn btn-primary btn-bgcolor-blue3" style="width: 20%;" data-toggle="modal" data-target="#searchModal2">With Type/City</button>
+		<button id="btn4" class="btn btn-primary btn-bgcolor-blue4"  data-toggle="modal" data-target="#searchModal">With Name</button>
+		<button id="btn3" class="btn btn-primary btn-bgcolor-blue3"  data-toggle="modal" data-target="#searchModal2">With Type/City</button>
 	</div>
 	
 </section>
@@ -57,53 +57,6 @@
 		</div>
 	</div>
 </section>
-
-    <!-- FOOTER -->
-    <footer class="footerWhite">
-      <!-- FOOTER INFO -->
-      <div class="clearfix footerInfo">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-7 col-xs-12">
-              <div class="footerText">
-                <a href="index.html" class="footerLogo"><img src="https://passion-stickers.com/1532-1653-large_default/stickers-mural-paris-tour-eiffel.jpg" alt="Footer Logo"></a>
-                <p>This site allows visitors to make visiting the monuments of Paris easier. If a monument is missing or if you have any ideas for improvement, do not hesitate to contact us through the link below ;)</p>
-                <ul class="list-styled list-contact">
-                  <li><i class="fa fa-phone" aria-hidden="true"></i>06.11.21.90.67</li>
-                  <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="#">contact@lesbogoss.com</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-sm-3 col-xs-12">
-              <div class="footerInfoTitle">
-                <h4>Links</h4>
-              </div>
-              <div class="useLink">
-                <ul class="list-unstyled">
-                  <li><a href="dashboard.html">Dashboard</a></li>
-                  <li><a href="sign-up.html">Create Account</a></li>
-                  <li><a href="login.html">Login</a></li>
-                  <li><a href="add-listings.html">Add Listing</a></li>
-                  <li><a href="edit-listings.html">Edit Listing</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-sm-2 col-xs-12">
-              <div class="footerInfoTitle">
-                <h4>Company</h4>
-              </div>
-              <div class="useLink">
-                <ul class="list-unstyled">
-                  <li><a href="contact-us.html">Contact Us</a></li>
-                  <li><a href="terms-of-services.html">Terms and Conditions</a></li>
-                  <li><a href="how-it-works.html">How It Works</a></li>
-                  <li><a href="pricing-table.html">Pricing</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
   <!-- LOGIN  MODAL -->
   <div id="loginModal" tabindex="-1" class="modal fade" role="dialog">
@@ -184,7 +137,7 @@
               <div class="input-group" style="width: 180%; padding-top: 10%">
                 <div class="input-group-addon" >City</div> <!-- METTRE UN NAME OBLIGATOIRE !!!! LA MAJUSCULE -->
                 <!--<input type="text" class="form-control" name="city" id="findItem" placeholder="What are you looking for?">-->
-                <select class="form-control" name="city" name="city" >
+                <select id="formCity" class="form-control" name="city" name="city" >
                   <option>City 1 </option>
                   <option>City 2 </option>
                   <option>City 3 </option>
@@ -196,7 +149,7 @@
               <div class="input-group" style="width: 160%; padding-top: 15%; padding-bottom: 15%; ">
                 <div class="input-group-addon" >Type</div>
                 <!-- <input type="text" class="form-control" name="type" id="nearLocation" placeholder="Type of monument"> -->
-                <select class="form-control" name="type" name="type" style="width: 107%;">
+                <select id="formType" class="form-control" name="type" name="type" >
                   <option>Type 1 </option>
                   <option>Type 2 </option>
                   <option>Type 3 </option>

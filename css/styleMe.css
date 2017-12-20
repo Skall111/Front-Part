@@ -27,6 +27,30 @@ html, body{
 	width: 370px;
 	margin-left: 15px;
 }
+@media (min-width: 769px) {
+    #btn4{
+        width: 21%;
+    }
+}
+
+@media (max-width: 768px) {
+    #btn4{
+        width: 40%;
+        margin-left: 4px;
+    }
+}
+
+@media (min-width: 769px) {
+    #btn3{
+        width: 20%;
+    }
+}
+
+@media (max-width: 768px) {
+    #btn3{
+        width: 44%;
+    }
+}
 .btn_marge {
 	margin-bottom: 37px; 
 }
@@ -127,6 +151,45 @@ a#cRetour.cVisible{
 @media (max-width: 768px) {
     .logo{
         display: none;
+    }
+}
+
+.profileSection2 {
+    padding-top: 30%;
+
+}
+@media (min-width: 768px) {
+    .profileSection2 {
+        padding: 60px 0;
+        padding-top: 8%;
+    } }
+
+
+@media (max-width: 768px) {
+    #formType{
+        width: 74%;
+    }
+}
+@media (min-width: 769px) {
+    #formType{
+        width: 137%;
+    }
+}
+@media (min-width: 769px) {
+    #formCity{
+        width: 128%;
+    }
+}
+@media (max-width: 768px) {
+    #formCity{
+        width: 54%;
+    }
+}
+/* ================ Congrat Modal ==================== */
+
+@media (min-width: 769px) {
+    #congratModal{
+        margin-top: 12%;
     }
 }
 
