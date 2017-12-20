@@ -9,6 +9,40 @@ $twig = new Twig_Environment($loader, array(
     //  "cache" => "/path/to/compilation_cache",
 ));
 $db = App::getDatabase();
+$userlog = $_SESSION['User'];
+$user = $db->query("SELECT * FROM User WHERE Id = $userlog")->fetch();
+if(isset($_POST['type'])){
+    $name  = $db->quote($_POST['name']);
+    $surname = $db->quote($_POST['surname']);
+    $mail = $db->quote($_POST['email']);
+    if(!empty($_POST['currentPass']) && !empty($_POST['newPass']) && !empty($_POST['confirmPass'])){
+        $currentPass = md5($_POST['currentPass']);
+        $verif = $db->query("SELECT Name FROM User Where Password = '$currentPass'")->fetch();
+
+        if($_POST['newPass'] != $_POST['confirmPass']) {
+            $errors[] = ['mdp' => [
+                'Les mots de passe ne corresponde pas'
+            ]];
+        }elseif(!$verif){
+           $errors[] = 'Mot de passe incorrecte';
+        }else{
+            $newPass =md5($_POST['currentPass']);
+            if($db->query("UPDATE User Set Name = $name , Surname =$surname , Mail=$mail ,Password =  '$newPass' WHERE Id = '$userlog'" , ['1', '2'])){
+                $success[] =  'Vos informations ont bien été mise a jour';
+            }
+
+        }
+
+
+
+    }else{
+        if($db->query("UPDATE User Set Name = $name , Surname =$surname , Mail=$mail WHERE Id = '$userlog'" , ['1', '2'])){
+            $success[] =  'Vos informations ont bien été mise a jour';
+
+
+        }
+    }
+}
 
 
 
@@ -19,7 +53,11 @@ $parametre =
         'prenom'=> 'Le Boss',
         'metier'=> 'Developpeur',
         'path'=> $path,
-    ];
+        'session'=>$_SESSION['User'],
+        'user' => $user ,
+        'errors' => $errors ,
+        'success'=> $success
 
+    ];
 echo $twig->render("profile.html.twig", $parametre);
 ?>

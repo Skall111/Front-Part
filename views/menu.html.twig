@@ -98,7 +98,11 @@
                             </li>
                         </ul>
                     </div>
-                    <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#loginModal"> <span>Register / Sign in</span> </button>
+                    {% if session > 0 %}
+                        <button type="button" class="btn btn-default navbar-btn" onclick="document.location.href='{{ path }}php/profile.php';"> <span>MY ACCOUNT</span> </button>
+                    {% else %}
+                        <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#loginModal"> <span>Register / Sign in</span> </button>
+                    {% endif %}
                 </div>
             </nav>
         </div>

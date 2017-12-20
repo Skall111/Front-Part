@@ -15,16 +15,11 @@
 							</div>
 						</div>
 					</div>
-					<div class="profileUserInfo bt profileName">
-						<p>Your Current Plan</p>
-						<h2>Platinum Package</h2>
-						<h5>Next Payment: <span>15/01/2017</span></h5>
-						<a href="#" class="btn btn-primary">Change</a>
-					</div>
+
 				</div>
 			</div>
 			<div class="col-md-8 col-sm-7 col-xs-12">
-				<form>
+				<form method="POST">
 					<div class="dashboardBoxBg">
 						<div class="profileIntro">
 							<h2>Your Profile</h2>
@@ -34,18 +29,32 @@
 					<div class="dashboardBoxBg mt30">
 						<div class="profileIntro">
 							<h3>About You</h3>
+							{% if success is not null %}
+								<div class="alert-success alert">
+									{% for success in success %}
+										{{ success }}<br>
+									{% endfor %}
+								</div>
+								{% elseif errors is not null%}
+							<div class="alert-danger alert">
+                            {% for errors in errors %}
+                                {{ errors }}<br>
+                            {% endfor %}
+						</div>
+							{% endif %}
 							<div class="row">
 								<div class="form-group col-sm-6 col-xs-12">
 									<label for="firstNameProfile">Fast Name</label>
-									<input type="text" class="form-control" id="firstNameProfile" placeholder="Jane">
+									<input type="text" class="form-control" id="firstNameProfile" name="name" required placeholder="Jane" {%  if user is not null %}value="{{ user.Name }}" {% endif %}>
+									<input type="hidden" name="type" value="Account">
 								</div>
 								<div class="form-group col-sm-6 col-xs-12">
 									<label for="lastNameProfile">Last Name</label>
-									<input type="text" class="form-control" id="lastNameProfile" placeholder="Doe">
+									<input type="text" class="form-control" id="lastNameProfile" name="surname" required placeholder="Doe"  {%  if user is not null %}value="{{ user.Surname }}" {% endif %}>
 								</div>
 								<div class="form-group col-sm-6 col-xs-12">
 									<label for="emailProfile">Email</label>
-									<input type="text" class="form-control" id="emailProfile" placeholder="Jane@example.com">
+									<input type="text" class="form-control" id="emailProfile" name="email" required placeholder="Jane@example.com" {%  if user is not null %}value="{{ user.Mail }}" {% endif %}>
 								</div>
 								<div class="form-group col-sm-6 col-xs-12">
 									<label for="phoneProfile">Phone</label>
@@ -61,22 +70,22 @@
 
 					<div class="dashboardBoxBg mt30">
 						<div class="profileIntro">
-							<h3>Update password</h3>
+							<h3>Update password (If you want)</h3>
 							<div class="row">
 								<div class="form-group col-xs-12">
 									<label for="currentPassword">Current Password</label>
-									<input type="password" class="form-control" id="currentPassword" placeholder="********">
+									<input type="password" class="form-control" id="currentPassword" name="currentPass" placeholder="********">
 								</div>
 								<div class="form-group col-xs-12">
 									<label for="newPassword">New Password</label>
-									<input type="password" class="form-control" id="newPassword" placeholder="New Password">
+									<input type="password" class="form-control" id="newPassword" name="newPass" placeholder="New Password">
 								</div>
 								<div class="form-group col-xs-12">
 									<label for="confirmPassword">Confirm Password</label>
-									<input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+									<input type="password" class="form-control" id="confirmPassword" name="confirmPass" placeholder="Confirm Password">
 								</div>
 								<div class="form-group col-xs-12">
-									<button class="btn btn-primary" type="button">Change Password</button>
+									<button class="btn btn-primary" type="submit" role="submit">Update</button>
 								</div>
 							</div>
 						</div>

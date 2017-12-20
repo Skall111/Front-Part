@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../vendor/autoload.php';
 include '../config/variables.inc.php';
 require 'autoload.php';
@@ -15,7 +15,7 @@ if (isset($_POST['type'])){
         $surname = $db->quote($_POST['lastname']);
         $mail = $db->quote($_POST['youremail']);
         $pass = md5($_POST['password']);
-        $db->query("INSERT INTO User(Name , Surname , Password , Mail) VALUES ($name , $surname , $pass , $mail )" , '1');
+        $db->query("INSERT INTO User(Name , Surname , Password , Mail) VALUES ($name , $surname , $pass , $mail )" , ['1','2']);
         $valid = 1;
     }
     elseif ($_POST['type'] == 2){
@@ -39,6 +39,7 @@ if (isset($_POST['type'])){
             $PHPmail->addAddress($_POST['email'], 'Contact');
             $user = new Auth();
             $newpass = $user->NewPass();
+            $newpasscrypt = md5($newpass);
             $msg = 'Votre Nouveau Mot de passe est : ' . $newpass;
             $PHPmail->CharSet = 'UTF-8';
             $PHPmail->isHTML(true);
@@ -51,7 +52,7 @@ if (isset($_POST['type'])){
                 $error[] = 'Mailer Error: ' . $PHPmail->ErrorInfo;
             } else {
                 $error[] = 'Un nouveau mot de passe vous a été envoyer ';
-                $connect = $db->query("UPDATE User Set Password = '$newpass' WHERE Id = $id " , 1 )->fetch() ;
+                $db->query("UPDATE User Set Password = '$newpasscrypt' WHERE Id = $id " , ['1','2'] ) ;
             }
         }else{
             $error[] = 'Aucun utilisateur n\'a été toruvé avec cette Email ';
@@ -69,6 +70,7 @@ $parametre =
 'valid' => $valid ,
 'error' => $error ,
 'success' => $success,
+'session'=>$_SESSION['User']
 ];
 echo $twig->render("index.html.twig", $parametre);
 ?>

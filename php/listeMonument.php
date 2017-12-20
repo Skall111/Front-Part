@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once '../vendor/autoload.php';
 include '../config/variables.inc.php';
 require 'autoload.php';
@@ -20,6 +20,10 @@ $parametre =
 'metier'=> 'Developpeur',
 'path'=> $path,
 'Monument' => $listeMonument,
+'session'=>$_SESSION['User']
+
+
+
 ];
 
 
