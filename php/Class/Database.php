@@ -15,6 +15,7 @@ class Database{
      * @return PDOStatement
      */
     public function query($query, $params = false){
+//        echo $query ;
         if($params){
             $req = $this->pdo->prepare($query);
             $req->execute($params);

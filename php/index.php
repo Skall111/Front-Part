@@ -15,24 +15,24 @@ if (isset($_POST['type'])){
         $surname = $db->quote($_POST['lastname']);
         $mail = $db->quote($_POST['youremail']);
         $pass = md5($_POST['password']);
-        var_dump($name) ;
-        var_dump($surname);
-        var_dump($mail);
-        var_dump($pass);
         $db->query("INSERT INTO User(Name , Surname , Password , Mail) VALUES ($name , $surname , $pass , $mail )" , '1');
         $valid = 1;
     }
     elseif ($_POST['type'] == 2){
         $mail = $db->quote($_POST['email']);
         $pass = md5($_POST['password']);
-        $connect = $db->query("SELECT * FROM User WHERE Mail = $mail AND Password = $pass")->fetch() ;
+        $connect = $db->query("SELECT * FROM User WHERE Mail = $mail AND Password = '$pass' ")->fetch() ;
         if($connect){
-            $_SESSION['User'] = $connect['Id'];
+            $_SESSION['User'] = $connect->Id;
+            $success[] = 'Connexion Reussi' ;
+        }else{
+            $success[] = 'Connexion Echoué' ;
         }
     }elseif ($_POST['type'] == 3){
         $mail = $db->quote($_POST['email']);
         $connect = $db->query("SELECT * FROM User WHERE Mail = $mail")->fetch() ;
         if($connect) {
+            $id = $connect->Id ;
             include 'Class/NewPHPMailer.php';
             $PHPmail->setFrom('contact@bendezign.ovh', 'PMH');
             $PHPmail->addAddress('contact@bendezign.ovh', 'Teboul Ben');
@@ -51,6 +51,7 @@ if (isset($_POST['type'])){
                 $error[] = 'Mailer Error: ' . $PHPmail->ErrorInfo;
             } else {
                 $error[] = 'Un nouveau mot de passe vous a été envoyer ';
+                $connect = $db->query("UPDATE User Set Password = '$newpass' WHERE Id = $id " , 1 )->fetch() ;
             }
         }else{
             $error[] = 'Aucun utilisateur n\'a été toruvé avec cette Email ';
@@ -67,6 +68,7 @@ $parametre =
 'path' => $path ,
 'valid' => $valid ,
 'error' => $error ,
+'success' => $success,
 ];
 echo $twig->render("index.html.twig", $parametre);
 ?>
