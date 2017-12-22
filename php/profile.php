@@ -10,6 +10,8 @@ $twig = new Twig_Environment($loader, array(
 ));
 $db = App::getDatabase();
 $userlog = $_SESSION['User'];
+$errors = [];
+$success = [];
 $user = $db->query("SELECT * FROM User WHERE Id = $userlog")->fetch();
 if(isset($_POST['type'])){
     $name  = $db->quote($_POST['name']);

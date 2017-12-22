@@ -9,13 +9,15 @@ $twig = new Twig_Environment($loader, array(
     ));
 $db = App::getDatabase();
 $valid  = 0 ;
+$error = [];
+$success = [];
 if (isset($_POST['type'])){
     if($_POST['type'] == 1) {
         $name = $db->quote($_POST['firstname']);
         $surname = $db->quote($_POST['lastname']);
         $mail = $db->quote($_POST['youremail']);
         $pass = md5($_POST['password']);
-        $db->query("INSERT INTO User(Name , Surname , Password , Mail) VALUES ($name , $surname , $pass , $mail )" , ['1','2']);
+        $db->query("INSERT INTO User(Name , Surname , Password , Mail) VALUES ($name , $surname , '$pass' , $mail )" , ['1','2']);
         $valid = 1;
     }
     elseif ($_POST['type'] == 2){

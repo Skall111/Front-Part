@@ -99,7 +99,19 @@
                         </ul>
                     </div>
                     {% if session > 0 %}
-                        <button type="button" class="btn btn-default navbar-btn" onclick="document.location.href='{{ path }}php/profile.php';"> <span>MY ACCOUNT</span> </button>
+
+                        <button type="button" class="btn btn-default navbar-btn" >
+                            <span>
+                                <li class=" dropdown singleDrop">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                    <ul id="dropLogout" class="dropdown-menu dropdown-menu-left">
+                                        <li ><a id="colorDrop" onclick="document.location.href='{{ path }}php/profile.php';" >My Personal Information</a></li>
+                                        <li><a id="colorDrop" href=".....">Logout</a></li>
+                                    </ul>
+                                </li>
+
+                            </span> </button>
+
                     {% else %}
                         <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#loginModal"> <span>Register / Sign in</span> </button>
                     {% endif %}

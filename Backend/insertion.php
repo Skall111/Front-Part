@@ -4,7 +4,7 @@ if(isset($_POST))
     $host = "localhost";
     $db = "Monument";
     $userbdd= "root";
-    $passbdd = "root";
+    $passbdd = "";
     $bdd = new PDO("mysql:host=$host;dbname=$db;", $userbdd, $passbdd);
 
     $json =  file_get_contents("https://maps.googleapis.com/maps/api/place/details/json?placeid=".$_POST['place_id']."&key=AIzaSyDCHntX1dfipLoTZzz-hz-waNxTewkUjIk");
