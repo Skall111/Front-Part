@@ -22,6 +22,7 @@
     <link href="{{ path }}plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
     <link href="{{ path }}plugins/isotope/isotope.min.css" rel="stylesheet">
     <link href="{{ path }}plugins/map/css/map.css" rel="stylesheet">
+    <link href="{{ path }}plugins/sweetalert2/dist/sweetalert2.css" rel="stylesheet">
 
     <!-- GOOGLE FONT -->
     <link href="https://fonts.googleapis.com/css?family=Muli:200,300,400,600,700,800,900" rel="stylesheet">
@@ -96,21 +97,29 @@
                             <li><a href="{{ path }}php/listeMonument.php">CONTACT US</a></li>
 
                             </li>
+
+                    {% if session > 0 %}
+                        <li class=" dropdown singleDrop">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-left">
+                                <li><a href="{{ path }}php/profile.php">My Profile</a></li>
+                                <li><a href="{{ path }}php/disconnect.php">Disconnect</a></li>
+
+                            </ul>
+                        </li>
                         </ul>
                     </div>
-                    {% if session > 0 %}
+                        {#<button type="button" class="btn btn-default navbar-btn" >#}
+                            {#<span>#}
+                                {#<li class=" dropdown megaDropMenu">#}
+                                    {#<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <i class="fa fa-angle-down" aria-hidden="true"></i></a>#}
+                                    {#<ul id="dropLogout" class="dropdown-menu dropdown-menu-left">#}
+                                        {#<li ><a id="colorDrop" onclick="document.location.href='{{ path }}php/profile.php';" >My Personal Information</a></li>#}
+                                        {#<li><a id="colorDrop" href=".....">Logout</a></li>#}
+                                    {#</ul>#}
+                                {#</li>#}
 
-                        <button type="button" class="btn btn-default navbar-btn" >
-                            <span>
-                                <li class=" dropdown singleDrop">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                    <ul id="dropLogout" class="dropdown-menu dropdown-menu-left">
-                                        <li ><a id="colorDrop" onclick="document.location.href='{{ path }}php/profile.php';" >My Personal Information</a></li>
-                                        <li><a id="colorDrop" href=".....">Logout</a></li>
-                                    </ul>
-                                </li>
-
-                            </span> </button>
+                            {#</span> </button>#}
 
                     {% else %}
                         <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#loginModal"> <span>Register / Sign in</span> </button>

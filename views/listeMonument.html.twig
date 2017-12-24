@@ -22,26 +22,56 @@
 		</div>
 		<div class="row">
             {% for Monument in Monument %}
-			<div class="col-md-4 col-sm-6 col-xs-12">
+			<div class="col-md-4 col-sm-6 col-xs-12" onclick="document.location.href='{{ path }}php/monumentDetail.php?q={{ Monument.Id_monument }}'">
 				<div class="thingsBox thinsSpace">
 					<div class="thingsImage">
 						<img src="{{ path }}img/things/things-1.jpg" alt="Image things">
 						<div class="thingsMask">
 							<ul class="list-inline rating">
+                                {% set Rating = Monument|last.totalRating / Monument|last.totalLine %}
+                                {% if Rating|round == 1 %}
 								<li><i class="fa fa-star" aria-hidden="true"></i></li>
-								<li><i class="fa fa-star" aria-hidden="true"></i></li>
-								<li><i class="fa fa-star" aria-hidden="true"></i></li>
-								<li><i class="fa fa-star" aria-hidden="true"></i></li>
-								<li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                {% elseif Rating|round == 2 %}
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                {% elseif Rating|round == 3 %}
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                {% elseif Rating|round == 4 %}
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                {% else %}
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                {% endif %}
+
+
+
 							</ul>
-							<a href="blog-details.html"><h2>{{ Monument.Name }} <i class="fa fa-check-circle" aria-hidden="true"></i></h2></a>
-							<p>{{ Monument.Lat }} -- {{ Monument.Lon }}</p>
+							<a href="{{ path }}php/monumentDetail.php?q={{ Monument.Id_monument }}"><h2>{{ Monument.Name_Monument }} <i class="fa fa-check-circle" aria-hidden="true"></i></h2></a>
+
 						</div>
 					</div>
 					<div class="thingsCaption ">
 						<ul class="list-inline captionItem">
-							<li><i class="fa fa-heart-o" aria-hidden="true"></i> 10 k</li>
-							<li><a href="category-list-full.html">Hotel, Restaurant</a></li>
+							<li><i class="fa fa-heart-o" aria-hidden="true"></i>  {{ Monument|last.totalLine }}</li>
+							<li><a href="#">{{ Monument.Type_Name }}</a></li>
 						</ul>
 					</div>
 				</div>
@@ -51,7 +81,7 @@
 
 			<div class="col-xs-12">
 				<div class="btnArea btnAreaBorder text-center">
-					<a href="category-grid-full.html" class="btn btn-primary">Explore More</a>
+					<a href="#" class="btn btn-primary">Explore More</a>
 				</div>
 			</div>
 		</div>

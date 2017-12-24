@@ -125,7 +125,7 @@ $(document).ready(function(){
     ];
 
     function initMap() {
-        var myLatLng = {lat: -33.91722, lng: 151.23064};
+        // var myLatLng = {lat: -33.91722, lng: 151.23064};
 
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 16,

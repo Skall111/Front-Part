@@ -6,21 +6,44 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="listingTitleArea">
-                        <h2>Glory Hole Doughnuts</h2>
-                        <p>1150 Queen Street West Toronto <br>Ontario M6J 1J3, Canada</p>
+                        <h2>{{ Monument.Name_Monument }}</h2>
                         <div class="listingReview">
                             <ul class="list-inline rating">
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                {% set Rating = Monument | last.totalRating / Monument | last.totalLine %}
+                                {% if Rating|round == 1 %}
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                {% elseif Rating|round == 2 %}
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                {% elseif Rating|round == 3 %}
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                {% elseif Rating|round == 4 %}
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                {% else %}
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                {% endif %}
                             </ul>
-                            <span>( 5 Reviews )</span>
-                            <ul class="list-inline captionItem">
-                                <li><i class="fa fa-heart-o" aria-hidden="true"></i> 10 k</li>
-                            </ul>
-                            <a href="#" class="btn btn-primary">Write a review</a>
+                            <span>( {{ Monument | last.totalLine }} Reviews )</span>
+                            <a href="#Review" class="btn btn-primary">Write a review</a>
                         </div>
                     </div>
                 </div>
@@ -63,60 +86,54 @@
                             </ul>
                         </div>
                         <div class="detailsInfoBox">
-                            <h3>Reviews (3)</h3>
+                            <h3>Reviews ({{ Monument | last.totalLine }})</h3>
+                            {% for comment in Comments %}
                             <div class="media media-comment">
                                 <div class="media-left">
                                     <img src="../img/listing/list-user-1.jpg" class="media-object img-circle" alt="Image User">
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading">Jessica Brown</h4>
+                                    <h4 class="media-heading">{{ comment.Id_User }}</h4>
                                     <ul class="list-inline rating">
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                        {% if comment.Rating|round == 1 %}
+                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                        {% elseif comment.Rating|round == 2 %}
+                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                        {% elseif comment.Rating|round == 3 %}
+                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                        {% elseif comment.Rating|round == 4 %}
+                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                        {% else %}
+                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                        {% endif %}
                                     </ul>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudan
-                                        totam rem ape riam,</p>
+                                    <p>{{ comment.Comments }}</p>
                                 </div>
                             </div>
-                            <div class="media media-comment">
-                                <div class="media-left">
-                                    <img src="../img/listing/list-user-2.jpg" class="media-object img-circle" alt="Image User">
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Jessica Brown</h4>
-                                    <ul class="list-inline rating">
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                    </ul>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudan
-                                        totam rem ape riam,</p>
-                                </div>
-                            </div>
-                            <div class="media media-comment">
-                                <div class="media-left">
-                                    <img src="../img/listing/list-user-3.jpg" class="media-object img-circle" alt="Image User">
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Jessica Brown</h4>
-                                    <ul class="list-inline rating">
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                    </ul>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudan
-                                        totam rem ape riam,</p>
-                                </div>
-                            </div>
+                            {% endfor %}
+
                         </div>
-                        <div class="detailsInfoBox">
+                        <div id="Review" lass="detailsInfoBox">
                             <h3>Write A Review </h3>
                             <div class="listingReview">
                                 <span>( 5 Reviews )</span>
@@ -205,5 +222,7 @@
 {% endblock %}
 {% block script %}
     <script>
+        {#var center = new google.maps.LatLng({{ Monument.Lat }}, {{ Monument.Lon }});#}
+        var myLatLng = {lat: {{ Monument.Lat }}, lng: {{ Monument.Lon }}};
     </script>
 {% endblock %}

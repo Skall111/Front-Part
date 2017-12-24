@@ -373,13 +373,6 @@
 					<h4 class="modal-title">Log In to your Account</h4>
 				</div>
 				<div class="modal-body">
-					{% if success is not null  %}
-						<div class="alert alert-success">
-							{% for success in success %}
-								{{ success }}<br>
-							{% endfor %}
-						</div>
-					{% endif %}
 					<form class="loginForm" id="form-connect" method="POST">
 						<div class="form-group">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -424,13 +417,6 @@
           					<br>
 							We'll send you an email with instructions to choose a new password.
         				</span>
-						{% if error is not null  %}
-							<div class="alert alert-info">
-							{% for error in error %}
-								{{ error }}<br>
-							{% endfor %}
-							</div>
-						{% endif %}
 						<div class="form-group input-group">
           					<span class="input-group-addon">
             					@
@@ -533,12 +519,36 @@
 	$("#btnsearch2").addClass("hide");
 
 });
-		{% if valid == 1 %}
-        $('#congratModal').modal('toggle');
-		{% endif  %}
-		{% if error is not null  %}
-        $('#forgotModal').modal('toggle');
+		{% if errors is not empty %}
+        swal({
+            title: '<i>OUPS ...</i>',
+            type: 'danger',
+            html:
+            '<div class="alert alert-danger">' +
+			{% for errors in errors %}
+			' {{ errors }}<br>' +
+			{% endfor %}
+			'</div>',
+            showCloseButton: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+        })
 		{% endif %}
+        {% if success is not empty %}
+        swal({
+            title: '<i>GREAT ...</i>',
+            type: 'success',
+            html:
+            '<div class="alert alert-success">' +
+            {% for success in success %}
+            ' {{ success }}<br>' +
+            {% endfor %}
+            '</div>',
+            showCloseButton: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+        })
+        {% endif %}
 
 
 //Fonction ANIMATION SCROOL 

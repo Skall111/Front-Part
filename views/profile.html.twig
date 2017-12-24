@@ -29,16 +29,16 @@
 					<div class="dashboardBoxBg mt30">
 						<div class="profileIntro">
 							<h3>About You</h3>
-							{% if success is not null %}
+							{% if success is not empty %}
 								<div class="alert-success alert">
 									{% for success in success %}
 										{{ success }}<br>
 									{% endfor %}
 								</div>
-								{% elseif errors is not null%}
+								{% elseif errors is not empty %}
 							<div class="alert-danger alert">
-                            {% for errors in errors %}
-                                {{ errors }}<br>
+                            {% for error in errors %}
+                                {{ error }}<br>
                             {% endfor %}
 						</div>
 							{% endif %}

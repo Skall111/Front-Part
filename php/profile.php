@@ -22,13 +22,11 @@ if(isset($_POST['type'])){
         $verif = $db->query("SELECT Name FROM User Where Password = '$currentPass'")->fetch();
 
         if($_POST['newPass'] != $_POST['confirmPass']) {
-            $errors[] = ['mdp' => [
-                'Les mots de passe ne corresponde pas'
-            ]];
+            $errors[] = 'Les mots de passe ne corresponde pas';
         }elseif(!$verif){
            $errors[] = 'Mot de passe incorrecte';
         }else{
-            $newPass =md5($_POST['currentPass']);
+            $newPass =md5($_POST['newPass']);
             if($db->query("UPDATE User Set Name = $name , Surname =$surname , Mail=$mail ,Password =  '$newPass' WHERE Id = '$userlog'" , ['1', '2'])){
                 $success[] =  'Vos informations ont bien été mise a jour';
             }
