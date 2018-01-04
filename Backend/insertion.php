@@ -4,7 +4,7 @@ if(isset($_POST))
     $host = "localhost";
     $db = "Monument";
     $userbdd= "root";
-    $passbdd = "";
+    $passbdd = "root";
     $bdd = new PDO("mysql:host=$host;dbname=$db;", $userbdd, $passbdd);
 
     $json =  file_get_contents("https://maps.googleapis.com/maps/api/place/details/json?placeid=".$_POST['place_id']."&key=AIzaSyDCHntX1dfipLoTZzz-hz-waNxTewkUjIk");
@@ -32,18 +32,28 @@ if(isset($_POST))
                       ");
     $req1->execute();
     $day=1 ;
-    foreach ($result->result->opening_hours->periods as $opening ) {
-        // echo "Jour(Close) : ".$opening->close->day;echo'<br>';
-        // echo "Heure(Close) : ".$opening->close->time;echo'<br>';
-        // echo "Jour(Open) : ".$opening->open->day;echo'<br>';
-        // echo "Heure(Open) : ".$opening->open->time;echo'<br>';
-        $ouvert  = $opening->open->time ;
-        $ferme = $opening->close->time ;
-        $req2 = $bdd->prepare("
-    INSERT INTO Ouvrir(Id_Monument , Id_Calendar , Matin_Debut , Matin_Fin , Midi_Debut , Midi_Fin) VALUES ('$lastIdMonument' , '$day'  , '$ouvert' , '','' ,'$ferme')  
+    if(isset($result->result->opening_hours->periods)) {
+        foreach ($result->result->opening_hours->periods as $opening) {
+            // echo "Jour(Close) : ".$opening->close->day;echo'<br>';
+            // echo "Heure(Close) : ".$opening->close->time;echo'<br>';
+            // echo "Jour(Open) : ".$opening->open->day;echo'<br>';
+            // echo "Heure(Open) : ".$opening->open->time;echo'<br>';
+            $ouvert = $opening->open->time;
+            $ferme = $opening->close->time;
+            $req2 = $bdd->prepare("INSERT INTO Ouvrir(Id_Monument , Id_Calendar , Matin_Debut , Matin_Fin , Midi_Debut , Midi_Fin) VALUES ('$lastIdMonument' , '$day'  , '$ouvert' , '','' ,'$ferme')  
                       ");
-        $req2->execute();
-        $day++;
+            $req2->execute();
+            $day++;
+        }
+    }else{
+        for ($i = 0 ; $i>7; $i++){
+            $ouvert = "0000";
+            $ferme = "0000";
+            $day = $i;
+            $req2 = $bdd->prepare("INSERT INTO Ouvrir(Id_Monument , Id_Calendar , Matin_Debut , Matin_Fin , Midi_Debut , Midi_Fin) VALUES ('$lastIdMonument' , '$day'  , '$ouvert' , '','' ,'$ferme')  
+                      ");
+            $req2->execute();
+        }
     }
     foreach ($result->result->reviews as $reviews ) {
         echo "Note : ".$reviews->rating;echo'<br>';
