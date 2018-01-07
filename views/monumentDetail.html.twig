@@ -52,14 +52,57 @@
     </section>
 
     <!-- LISTINGS DETAILS IMAGE SECTION -->
+    <!-- Button trigger modal -->
+    <a class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        + Add picture
+    </a>
     <section class="clearfix paddingAdjustTopBottom">
-        <ul class="list-inline listingImage">
-            <li><img src="../img/listing/listing-details-1.jpg" alt="Image Listing" class="img-responsive"></li>
-            <li><img src="../img/listing/listing-details-2.jpg" alt="Image Listing" class="img-responsive"></li>
-            <li><img src="../img/listing/listing-details-3.jpg" alt="Image Listing" class="img-responsive"></li>
-            <li><img src="../img/listing/listing-details-4.jpg" alt="Image Listing" class="img-responsive"></li>
-        </ul>
+            <div id="blog-carousel-id" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+            {% for Image in Images %}
+                        <div class="item {% if loop.index == 1 %}active{% endif %}">
+                            <img src="{{ path }}img/Monuments/{{ Monument.Id_monument }}/{{ Image.Url }}" alt="{{ Monument.Id_monument }}" class="imgCarousel img-responsive">
+                        </div>
+
+            {% endfor %}
+                </div>
+                <a class="left carousel-control" href="#blog-carousel-id" data-slide="prev" ><i class="arrow icon-listy icon-left-arrow-3"></i></a>
+                <a class="right carousel-control" href="#blog-carousel-id" data-slide="next"><i class="arrow icon-listy icon-right-arrow-3"></i></a>
+            </div>
     </section>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Download new image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="imageUploader text-center">
+                        <div class="file-upload">
+                            <div class="upload-area">
+                                <form class="form-control" enctype="multipart/form-data" method="POST" id="ImageDL" action="{{ path }}ajax/ImageDL.ajax.php">
+                                <input type="file" name="fichier" class="file" onchange="$('#ImageDL').submit();">
+                                <input type="hidden" name="id" value="{{ Monument.Id_monument }}">
+                                <input type="hidden" name="name_mon" value="{{ Monument.Name_Monument }}">
+                                <input type="hidden" name="number" value="{{ Images|length }}">
+                                <button class="browse" type="button">Click or Drag images here</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- LISTINGS DETAILS INFO SECTION -->
     <section class="clearfix paddingAdjustTop">
@@ -68,24 +111,6 @@
                 <div class="col-sm-8 col-xs-12">
                     <div class="listDetailsInfo">
                         <div class="detailsInfoBox">
-                            <h3>About This Hotel</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt  labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident. sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam. </p>
-                            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est. </p>
-                            <p>Qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui </p>
-                        </div>
-                        <div class="detailsInfoBox">
-                            <h3>Features</h3>
-                            <ul class="list-inline featuresItems">
-                                <li><i class="fa fa-check-circle-o" aria-hidden="true"></i>  Wi-Fi</li>
-                                <li><i class="fa fa-check-circle-o" aria-hidden="true"></i>  Street Parking</li>
-                                <li><i class="fa fa-check-circle-o" aria-hidden="true"></i>  Alcohol</li>
-                                <li><i class="fa fa-check-circle-o" aria-hidden="true"></i>  Vegetarian</li>
-                                <li><i class="fa fa-check-circle-o" aria-hidden="true"></i>  Reservations</li>
-                                <li><i class="fa fa-check-circle-o" aria-hidden="true"></i>  Pets Friendly</li>
-                                <li><i class="fa fa-check-circle-o" aria-hidden="true"></i>  Accept Credit Card</li>
-                            </ul>
-                        </div>
-                        <div class="detailsInfoBox">
                             <h3>Reviews ({{ Monument | last.totalLine }})</h3>
                             {% for comment in Comments %}
                             <div class="media media-comment">
@@ -93,7 +118,7 @@
                                     <img src="../img/listing/list-user-1.jpg" class="media-object img-circle" alt="Image User">
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading">{{ comment.Id_User }}</h4>
+                                    <h4 class="media-heading">{{ comment.Surname }}  {{ comment.Name }}</h4>
                                     <ul class="list-inline rating">
                                         {% if comment.Rating|round == 1 %}
                                             <li><i class="fa fa-star" aria-hidden="true"></i></li>
@@ -133,29 +158,31 @@
                             {% endfor %}
 
                         </div>
+                        <form action="#" method="POST">
                         <div id="Review" lass="detailsInfoBox">
                             <h3>Write A Review </h3>
                             <div class="listingReview">
                                 <span>( 5 Reviews )</span>
                                 <div class="rating">
-                                    <input name="stars" id="e5" type="radio"></a><label for="e5">☆</label>
-		                            <input name="stars" id="e4" type="radio"></a><label for="e4">☆</label>
-		                            <input name="stars" id="e3" type="radio"></a><label for="e3">☆</label>
-                                    <input name="stars" id="e2" type="radio"></a><label for="e2">☆</label>
-                                    <input name="stars" id="e1" type="radio"></a><label for="e1">☆</label>
+                                    <input name="stars" id="e5" type="radio" onclick="setRating(5)"></a><label for="e5">☆</label>
+		                            <input name="stars" id="e4" type="radio" onclick="setRating(4)"></a><label for="e4">☆</label>
+		                            <input name="stars" id="e3" type="radio" onclick="setRating(3)"></a><label for="e3">☆</label>
+                                    <input name="stars" id="e2" type="radio" onclick="setRating(2)"></a><label for="e2">☆</label>
+                                    <input name="stars" id="e1" type="radio" onclick="setRating(1)"></a><label for="e1">☆</label>
                                 </div>
                             </div>
-                            <form action="#">
+
                                 <div class="formSection formSpace">
                                     <div class="form-group">
                                         <textarea class="form-control" rows="3" placeholder="Comment"></textarea>
                                     </div>
                                     <div class="form-group mb0">
+                                        <input type="hidden" name="rating" id="rating">
                                         <button type="submit" class="btn btn-primary">Send Review</button>
                                     </div>
                                 </div>
-                            </form>
                         </div>
+                        </form>
                     </div>
                 </div>
                 <div class="col-sm-4 col-xs-12">
@@ -168,15 +195,7 @@
                             <ul class="list-unstyled list-address">
                                 <li>
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                    16/14 Babor Road, Mohammad pur <br> Dhaka, Bangladesh
-                                </li>
-                                <li>
-                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                    +55 654 545 122 <br> +55 654 545 123
-                                </li>
-                                <li>
-                                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                                    <a href="#">info @example.com</a> <a href="#">info@startravelbangladesh.com</a>
+                                    {{ Adresse }}
                                 </li>
                             </ul>
                         </div>
@@ -184,34 +203,18 @@
                     <div class="listSidebar">
                         <h3>Opening Hours</h3>
                         <ul class="list-unstyled sidebarList">
+                            {% for Horaire in Horaire %}
                             <li>
-                                <span class="pull-left">Monday</span>
-                                <span class="pull-right">08.00am - 05.00pm</span>
+                                {% set Matin = Horaire.Matin_Debut|split('') %}
+                                {% set Midi = Horaire.Midi_Fin|split('') %}
+                                <span class="pull-left">{{ Horaire.Name }}</span>
+                                {% if Horaire.Matin_Debut <= 0 %}
+                                    <span class="pull-right">Closed</span>
+                                {% else %}
+                                <span class="pull-right">{{ Matin.0 }}{{ Matin.1 }}h{{ Matin.2 }}{{ Matin.3 }} - {{ Midi.0 }}{{ Midi.1 }}h{{ Midi.2 }}{{ Midi.3 }}</span>
+                                {% endif  %}
                             </li>
-                            <li>
-                                <span class="pull-left">Tuesday</span>
-                                <span class="pull-right">08.00am - 05.00pm</span>
-                            </li>
-                            <li>
-                                <span class="pull-left">Wednesday</span>
-                                <span class="pull-right">08.00am - 05.00pm</span>
-                            </li>
-                            <li>
-                                <span class="pull-left">Thrusday</span>
-                                <span class="pull-right">08.00am - 05.00pm</span>
-                            </li>
-                            <li>
-                                <span class="pull-left">Friday</span>
-                                <span class="pull-right">08.00am - 05.00pm</span>
-                            </li>
-                            <li>
-                                <span class="pull-left">Saturday</span>
-                                <span class="pull-right"><a href="#">Closed</a></span>
-                            </li>
-                            <li>
-                                <span class="pull-left">Sunday</span>
-                                <span class="pull-right"><a href="#">Closed</a></span>
-                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -222,7 +225,17 @@
 {% endblock %}
 {% block script %}
     <script>
+        function setRating(Rating){
+            $('#rating').val(Rating);
+        }
         {#var center = new google.maps.LatLng({{ Monument.Lat }}, {{ Monument.Lon }});#}
         var myLatLng = {lat: {{ Monument.Lat }}, lng: {{ Monument.Lon }}};
+        {% if Msg is not null %}
+            swal(
+            'Hey!',
+            '{{ Msg }}',
+            'info'
+        )
+        {% endif %}
     </script>
 {% endblock %}

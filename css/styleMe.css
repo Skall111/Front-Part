@@ -203,7 +203,17 @@ a#cRetour.cVisible{
     #locationMonuDetail {
         margin-top: 2%; } }
 
-
+.imgCarousel {
+    margin-left:40% !important;
+    width: 300px !important;;
+    height: 300px !important;;
+}
+.arrow{
+background-color: black !important;
+}
+.arrow:hover{
+background-color: #2196f3 !important;
+}
 .rating {
     width: 226px;
     margin: 0 auto 1em;

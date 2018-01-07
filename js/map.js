@@ -125,7 +125,7 @@ var mapStyles = [{
 ];
 
 // map center
-var center = new google.maps.LatLng(-33.91722, 151.23064);
+var center = new google.maps.LatLng(48.8584, 2.2945);
 
 //Map initialize function
 function initialize() {
@@ -142,8 +142,9 @@ function initialize() {
     /*
     Path to json file that contains listing data for the marker. Make sure you are calling this file through a server.
      */
-    var url = 'http://themes.iamabdus.com/listty/1.0/js/listings.json';
+    // var url = 'http://themes.iamabdus.com/listty/1.0/js/listings.json';
 
+    var url = '../php/JsonData.php';
     // define the format of the file retrive from server. here it is in JSON format
     var mapdata = {
         format: 'json'

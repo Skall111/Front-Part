@@ -1,4 +1,20 @@
 <?php
+function getimg($url) {
+    $headers[] = 'Accept: image/gif, image/x-bitmap, image/jpeg, image/pjpeg';
+    $headers[] = 'Connection: Keep-Alive';
+    $headers[] = 'Content-type: application/x-www-form-urlencoded;charset=UTF-8';
+    $user_agent = 'php';
+    $process = curl_init($url);
+    curl_setopt($process, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($process, CURLOPT_HEADER, 0);
+    curl_setopt($process, CURLOPT_USERAGENT, $user_agent); //check here
+    curl_setopt($process, CURLOPT_TIMEOUT, 30);
+    curl_setopt($process, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($process, CURLOPT_FOLLOWLOCATION, 1);
+    $return = curl_exec($process);
+    curl_close($process);
+    return $return;
+}
 if(isset($_POST))
 {
     $host = "localhost";
@@ -21,15 +37,12 @@ if(isset($_POST))
     $cp = $result->result->address_components[7]->long_name ;
     //EXAMPLEEEE
     //https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJLU7jZClu5kcR4PcOOO6p3I0&key=AIzaSyDCHntX1dfipLoTZzz-hz-waNxTewkUjIk
-    $req = $bdd->prepare("
-    INSERT INTO Monument(Name , Lat, Lon , Id_City) VALUES ('$name' , '$lat' , '$lon' , '$city')
-                      ");
+    $req = $bdd->prepare("INSERT INTO Monument(Name , Lat, Lon , Id_City) VALUES ('$name' , '$lat' , '$lon' , '$city')");
     $req->execute();
     $lastIdMonument = $bdd->lastInsertId();
+    mkdir('../img/Monuments/'.$lastIdMonument);
 
-    $req1 = $bdd->prepare("
-    INSERT INTO Avoir(Id_Monument , Id_Type) VALUES ('$lastIdMonument' , '$type')  
-                      ");
+    $req1 = $bdd->prepare("INSERT INTO Avoir(Id_Monument , Id_Type) VALUES ('$lastIdMonument' , '$type')");
     $req1->execute();
     $day=1 ;
     if(isset($result->result->opening_hours->periods)) {
@@ -39,9 +52,10 @@ if(isset($_POST))
             // echo "Jour(Open) : ".$opening->open->day;echo'<br>';
             // echo "Heure(Open) : ".$opening->open->time;echo'<br>';
             $ouvert = $opening->open->time;
+            echo $ouvert ; echo '<br>';
             $ferme = $opening->close->time;
-            $req2 = $bdd->prepare("INSERT INTO Ouvrir(Id_Monument , Id_Calendar , Matin_Debut , Matin_Fin , Midi_Debut , Midi_Fin) VALUES ('$lastIdMonument' , '$day'  , '$ouvert' , '','' ,'$ferme')  
-                      ");
+            echo $ferme ; '<br>';
+            $req2 = $bdd->prepare("INSERT INTO Ouvrir(Id_Monument , Id_Calendar , Matin_Debut , Matin_Fin , Midi_Debut , Midi_Fin) VALUES ('$lastIdMonument' , '$day'  , '$ouvert' , '','' ,'$ferme')");
             $req2->execute();
             $day++;
         }
@@ -50,8 +64,7 @@ if(isset($_POST))
             $ouvert = "0000";
             $ferme = "0000";
             $day = $i;
-            $req2 = $bdd->prepare("INSERT INTO Ouvrir(Id_Monument , Id_Calendar , Matin_Debut , Matin_Fin , Midi_Debut , Midi_Fin) VALUES ('$lastIdMonument' , '$day'  , '$ouvert' , '','' ,'$ferme')  
-                      ");
+            $req2 = $bdd->prepare("INSERT INTO Ouvrir(Id_Monument , Id_Calendar , Matin_Debut , Matin_Fin , Midi_Debut , Midi_Fin) VALUES ('$lastIdMonument' , '$day'  , '$ouvert' , '','' ,'$ferme')");
             $req2->execute();
         }
     }
@@ -60,17 +73,34 @@ if(isset($_POST))
         echo "Commentaire : ".$reviews->text;echo'<br>';
         $rating = $reviews->rating;
         $comments = $reviews->text;
-        $req3 = $bdd->prepare("
-    INSERT INTO Comments(Comments , Rating) VALUES ('$comments' , '$rating')  
-                      ");
+        $req3 = $bdd->prepare("INSERT INTO Comments(Comments , Rating) VALUES ('$comments' , '$rating')");
         $req3->execute();
         $lastIdComments = $bdd->lastInsertId();
-        $req4 = $bdd->prepare("
-    INSERT INTO Afficher(Id_Monument , Id_User, Id_Comments) VALUES ('$lastIdMonument' , '1' , '$lastIdComments')  
-                      ");
+        $req4 = $bdd->prepare("INSERT INTO Afficher(Id_Monument , Id_User, Id_Comments) VALUES ('$lastIdMonument' , '1' , '$lastIdComments') ");
         $req4->execute();
     }
+    echo $lastIdMonument;
+    $url = "https://api.unsplash.com/search/photos/?client_id=89ac27946ca5c08343d7a728dc32c5db699c1e29494dc94f7aead3d32504832d&query=".$name;
+    $test = json_decode(file_get_contents($url));
+    $i = 0 ;
+    foreach ($test->results as $item){
+        if($i < 5) {
+            echo $image = $item->urls->regular;
 
+
+            echo "<br>";
+            echo $lastIdMonument;
+            $i++;
+            $image = getimg($image);
+            $image_name =  str_replace(" ", "_", $name);
+ 		file_put_contents('../img/Monuments/'.$lastIdMonument."/".$image_name."_".$i.".jpg",$image);
+ 		$final_name  = $image_name."_".$i.".jpg" ;
+            $req5 = $bdd->prepare("INSERT INTO Image(Url , Id_Monument) VALUES ('$final_name', '$lastIdMonument') ");
+            $req5->execute();
+        }else{
+            break;
+        }
+    }
     // echo "Code Postal :".$result->result->address_components[7]->long_name;echo'<br>';
     // echo "Latitude : ".$result->result->geometry->location->lat ;echo'<br>';
     // echo "Longitude : ".$result->result->geometry->location->lng ; echo'<br>';

@@ -22,9 +22,9 @@ class Session{
         return isset($_SESSION['flash']);
     }
 
-    public function getFlashes(){
-        $flash = $_SESSION['flash'];
-        unset($_SESSION['flash']);
+    public function getFlashes($key){
+        $flash = $_SESSION['flash'][$key];
+        unset($_SESSION['flash'][$key]);
         return $flash;
     }
 

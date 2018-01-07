@@ -40,6 +40,14 @@ foreach ($comments as $comment){
 //print_r($listeMonuments);
 //echo '</pre>';
 ////exit;
+
+
+
+//Creation du json pour la Maps
+$Prep_json = [
+
+];
+$json = json_encode($Prep_json);
 $parametre =
 [
 'nom' => 'Benj',
@@ -48,7 +56,8 @@ $parametre =
 'path'=> $path,
 'Monument' => $listeMonuments,
 'Comments' => $comments,
-'session'=>$_SESSION['User']
+'session'=>$_SESSION['User'],
+'Get' => $_GET,
 
 
 
