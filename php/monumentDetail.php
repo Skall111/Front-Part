@@ -8,13 +8,21 @@ $loader = new Twig_Loader_Filesystem("../views/");
 $twig = new Twig_Environment($loader, array(
     //  "cache" => "/path/to/compilation_cache",
 ));
-
+$db = App::getDatabase();
 $valid  = 0 ;
 $error = [];
 $success = [];
-
-$db = App::getDatabase();
 $idMonument = $_GET['q'];
+if(isset($_POST['Review'])){
+    $rating = $_POST['Rating'];
+    $comment = $_POST['Comment'];
+    $idUser = $_SESSION['User'];
+    $query = $db->query("INSERT INTO Comments (Comments, Rating) VALUES ('$comment' , '$rating') ");
+    $lastId = $db->lastInsertId();
+    $querybis = $db->query("INSERT INTO Afficher (Id_Monument, Id_User, Id_Comments) VALUES ('$idMonument' ,'$idUser','$lastId' )");
+}
+
+
 $listeMonument= $db->query("SELECT *  , M.Id AS Id_monument , M.Name AS Name_Monument FROM Monument AS M 
                                   LEFT JOIN Avoir AS A ON M.Id = A.Id_Monument 
                                   LEFT JOIN Type AS T ON A.Id_Type = T.Id
