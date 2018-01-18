@@ -81,7 +81,7 @@ if (isset($_POST)) {
         $rating = $reviews->rating;
         $comments = $reviews->text;
         $comment_value = addslashes($comments);
-        $req3 = $bdd->prepare("INSERT INTO Comments(Comments , Rating) VALUES ($comments , '$rating')");
+        $req3 = $bdd->prepare("INSERT INTO Comments(Comments , Rating) VALUES ('$comment_value' , '$rating')");
         $req3->execute();
         $lastIdComments = $bdd->lastInsertId();
         $req4 = $bdd->prepare("INSERT INTO Afficher(Id_Monument , Id_User, Id_Comments) VALUES ('$lastIdMonument' , '1' , '$lastIdComments') ");
@@ -91,9 +91,13 @@ if (isset($_POST)) {
     $url = "https://api.unsplash.com/search/photos/?client_id=89ac27946ca5c08343d7a728dc32c5db699c1e29494dc94f7aead3d32504832d&query=" . $name;
     $test = json_decode(file_get_contents($url));
     $i = 0;
+    echo '<br>';
+    echo $url ;
+    echo '<br>';
+
     foreach ($test->results as $item) {
         if ($i < 5) {
-//            echo $image = $item->urls->regular;
+        $image = $item->urls->regular;
 
 
             echo "<br>";
