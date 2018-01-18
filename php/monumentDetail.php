@@ -9,6 +9,7 @@ $twig = new Twig_Environment($loader, array(
     //  "cache" => "/path/to/compilation_cache",
 ));
 $db = App::getDatabase();
+include '../config/FormModal.php';
 $valid  = 0 ;
 $error = [];
 $success = [];
@@ -62,6 +63,7 @@ $adresse = $json->results[0]->formatted_address;
 $message = new Session();
 
 $Msg =$message->getFlashes('DL');
+$connect = $message->read('User');
 $parametre =
     [
         'nom' => 'Benj',
@@ -74,10 +76,8 @@ $parametre =
         'session'=>$_SESSION['User'],
         'Horaire'=>$Horaire,
         'Images'=>$Images,
+        'connect' => $connect,
         'Msg' => $Msg,
-
-
-
     ];
 
 

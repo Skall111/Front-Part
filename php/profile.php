@@ -9,6 +9,7 @@ $twig = new Twig_Environment($loader, array(
     //  "cache" => "/path/to/compilation_cache",
 ));
 $db = App::getDatabase();
+include '../config/FormModal.php';
 $userlog = $_SESSION['User'];
 $errors = [];
 $success = [];

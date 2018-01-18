@@ -10,11 +10,12 @@ $twig = new Twig_Environment($loader, array(
     ));
 
 $db = App::getDatabase();
-
+include '../config/FormModal.php';
 $listeMonument= $db->query("SELECT *  , M.Id AS Id_monument , M.Name AS Name_Monument FROM Monument AS M 
                                   LEFT JOIN Avoir AS A ON M.Id = A.Id_Monument 
                                   LEFT JOIN Type AS T ON A.Id_Type = T.Id
-                                  ")->fetchAll();
+                                  ORDER BY M.Id
+                                  LIMIT 10 ")->fetchAll();
 $count = 0;
 $totalComment = 0;
 foreach ($listeMonument as $monument ){

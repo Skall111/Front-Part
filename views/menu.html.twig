@@ -50,6 +50,147 @@
 <div><a id="cRetour" class="cInvisible" href="#pageTop"></a></div>
 <div class="page-loader" style="background: url({{ path }}img/preloader.gif) center no-repeat #fff;"></div>
 <div class="main-wrapper" style="height:100%">
+    <!-- LOGIN  MODAL -->
+    <div id="loginModal" tabindex="-1" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" id="form-connect">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Log In to your Account</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="loginForm" id="form-connect" method="POST">
+                        <div class="form-group">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            <input type="password" class="form-control" name="password" id="pwd" placeholder="Password">
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox"> Remember me</label>
+                            <input type="hidden" name="type" value="2">
+
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                            <a data-toggle="modal" data-dismiss="modal" data-target="#forgotModal">Forgot Password</a>
+                            <a style="margin-left: 45%;" data-toggle="modal" data-dismiss="modal" data-target="#registerModal">Register</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#FIN#}
+
+    <!-- FORGOT PASSWORD  MODAL -->
+    <div id="forgotModal" tabindex="-1" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" id="form-connect">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Forgot your password?</h4>
+                </div>
+                <form accept-charset="UTF-8" role="form" id="login-recorda" method="post">
+                    <fieldset style="padding: 5%;">
+        				<span class="help-block">
+          					Email address you use to log in to your account
+          					<br>
+							We'll send you an email with instructions to choose a new password.
+        				</span>
+                        <div class="form-group input-group">
+          					<span class="input-group-addon">
+            					@
+          					</span>
+                            <input class="form-control" placeholder="Email" name="email" type="email" required="">
+                            <input type="hidden" name="type" value="3">
+
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" id="btn-olvidad">
+                            Continue
+                        </button>
+                        <p class="help-block">
+                            <a class="backAccount"  data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Account Access</a>
+                        </p>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    {#FIN#}
+    <div id="registerModal" tabindex="-1" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" id="form-connect">
+                <!-- Register  MODAL -->
+                {#<div class="container">#}
+                {#<div class="row">#}
+                <div class="col-xs-12 col-sm-12 col-md-4 well well-sm" style="width: 100%;padding: 5%;background-color: #ffffff;">
+                    <legend><a href="http://www.jquery2dotnet.com"></a> Sign up!</legend>
+                    <form action="#" method="post" class="form" role="form">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6">
+                                <input class="form-control" name="firstname" placeholder="First Name" type="text"
+                                       required autofocus />
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                                <input class="form-control" name="lastname" placeholder="Last Name" type="text" required />
+                            </div>
+                        </div>
+                        <input class="form-control" name="youremail" placeholder="Your Email" type="email" />
+                        <input class="form-control" name="reenteremail" placeholder="Re-enter Email" type="email" />
+                        <input class="form-control" name="password" placeholder="New Password" type="password" />
+                        <input type="hidden" name="type" value="1">
+                        <br />
+                        <br />
+                        <button class="btn btn-lg btn-primary btn-block" id="valid" type="submit" data-toggle="modal" data-target="#congratModal">
+                            Sign up</button>
+                    </form>
+                    <div class="form-group">
+                        <a style="margin-left: 45%;" data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Login</a>
+                    </div>
+                </div>
+                {#</div>#}
+                {#</div>#}
+            </div>
+        </div>
+    </div>
+
+
+    {#FIN#}
+
+    <div id="congratModal" tabindex="-1" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" id="form-connect">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Congratulation !!</h4>
+                </div>
+                <form accept-charset="UTF-8" role="form" id="login-recordar" method="post">
+                    <fieldset style="padding: 5%;">
+        				<span class="help-block">
+          					Thank you for creating your account !!!
+          					<br>
+							You can now note down the monuments you have visited and even leave a note to help others !!
+        				</span>
+
+                        <button type="submit" class="btn btn-primary btn-block" id="btn-olvidado"  data-toggle="modal" data-dismiss="modal" data-target="#loginModal">
+                            Connection
+                        </button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    {#FIN#}
     <!-- HEADER -->
     <header id="pageTop" class="header">
 

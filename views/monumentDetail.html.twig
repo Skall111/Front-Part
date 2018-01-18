@@ -179,7 +179,7 @@
                                     <div class="form-group mb0">
                                         <input type="hidden" name="Rating" id="rating">
                                         <input type="hidden" name="Review" value="1">
-                                        <button type="submit" class="btn btn-primary">Send Review</button>
+                                        <button {% if connect is not null %}type="submit"{% else %}type="button" data-toggle="modal" data-target="#loginModal"{% endif %} class="btn btn-primary">Send Review</button>
                                     </div>
                                 </div>
                         </div>
