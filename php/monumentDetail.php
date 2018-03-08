@@ -2,7 +2,6 @@
 require_once '../vendor/autoload.php';
 include '../config/variables.inc.php';
 require 'autoload.php';
-var_dump($_POST);
 
 $loader = new Twig_Loader_Filesystem("../views/");
 $twig = new Twig_Environment($loader, array(
@@ -12,7 +11,6 @@ $db = App::getDatabase();
 include '../config/FormModal.php';
 $valid  = 0 ;
 $error = [];
-$success = [];
 $idMonument = $_GET['q'];
 if(isset($_POST['Review'])){
     $rating = $_POST['Rating'];
@@ -47,7 +45,7 @@ $totalComment = 0;
     ];
 //    $listeMonuments[] = array_merge($listeMonument , $comments);
 $Horaire = $db->query("SELECT * FROM Ouvrir LEFT JOIN Calendar ON Ouvrir.Id_Calendar = Calendar.Id WHERE Id_Monument = $idMonument")->fetchAll();
-$Images = $db->query("SELECT * FROM Image WHERE Id_Monument = $idMonument")->fetchAll();
+$Images = $db->query("SELECT * FROM Image LEFT JOIN Monument ON image.Id_Monument = Monument.Id WHERE Id_Monument = $idMonument")->fetchAll();
 //echo '<pre>';
 //print_r($listeMonument);
 //echo '</pre>';
@@ -61,19 +59,26 @@ $json = json_decode($api_content);
 
 $adresse = $json->results[0]->formatted_address;
 $message = new Session();
-
-$Msg =$message->getFlashes('DL');
-$connect = $message->read('User');
+$Msg = null ;
+$connect = null ;
+if($message->hasFlashes('DL')) {
+    $Msg = $message->getFlashes('DL');
+}
+    if($message->hasFlashes('User')) {
+    $connect = $message->read('User');
+}
 $parametre =
     [
         'nom' => 'Benj',
         'prenom'=> 'Le Boss',
         'metier'=> 'Developpeur',
         'path'=> $path,
+        'success'=>$success ,
+        'errors'=>$errors,
         'Monument' => $listeMonument,
         'Comments' => $comments,
         'Adresse' => $adresse,
-        'session'=>$_SESSION['User'],
+        'session'=>@$_SESSION['User'],
         'Horaire'=>$Horaire,
         'Images'=>$Images,
         'connect' => $connect,

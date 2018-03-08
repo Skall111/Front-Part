@@ -12,7 +12,6 @@ $db = App::getDatabase();
 include '../config/FormModal.php';
 $userlog = $_SESSION['User'];
 $errors = [];
-$success = [];
 $user = $db->query("SELECT * FROM User WHERE Id = $userlog")->fetch();
 if(isset($_POST['type'])){
     $name  = $db->quote($_POST['name']);
@@ -53,6 +52,8 @@ $parametre =
         'nom' => 'Benj',
         'prenom'=> 'Le Boss',
         'metier'=> 'Developpeur',
+        'success'=>$success ,
+        'errors'=>$errors,
         'path'=> $path,
         'session'=>$_SESSION['User'],
         'user' => $user ,
