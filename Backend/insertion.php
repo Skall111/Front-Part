@@ -17,12 +17,12 @@ function getimg($url)
     return $return;
 }
 
-if (isset($_POST)) {
     $host = "localhost";
-    $db = "Monument";
+    $db = "monument";
     $userbdd = "root";
     $passbdd = "root";
     $bdd = new PDO("mysql:host=$host;dbname=$db;", $userbdd, $passbdd);
+if (isset($_POST) && !empty($_POST)) {
     echo "https://maps.googleapis.com/maps/api/place/details/json?placeid=" . $_POST['place_id'] . "&key=AIzaSyDCHntX1dfipLoTZzz-hz-waNxTewkUjIk";
     $json = file_get_contents("https://maps.googleapis.com/maps/api/place/details/json?placeid=" . $_POST['place_id'] . "&key=AIzaSyDCHntX1dfipLoTZzz-hz-waNxTewkUjIk");
     $result = json_decode($json);
@@ -88,7 +88,8 @@ if (isset($_POST)) {
         $req4->execute();
     }
     echo $lastIdMonument;
-    $url = "https://api.unsplash.com/search/photos/?client_id=89ac27946ca5c08343d7a728dc32c5db699c1e29494dc94f7aead3d32504832d&query=" . $name;
+    $name_image_url = str_replace(" " ,  "+" , $name);
+    $url = "https://api.unsplash.com/search/photos/?client_id=89ac27946ca5c08343d7a728dc32c5db699c1e29494dc94f7aead3d32504832d&query=" . $name_image_url;
     $test = json_decode(file_get_contents($url));
     $i = 0;
     echo '<br>';
@@ -104,10 +105,11 @@ if (isset($_POST)) {
             echo $lastIdMonument;
             $i++;
             $image = getimg($image);
-            $image_name = str_replace(" ", "_", $name);
-            $image_name = str_replace("''", "_", $name);
-            file_put_contents('../img/Monuments/' . $lastIdMonument . "/" . $image_name . "_" . $i . ".jpg", $image);
-            $final_name = $image_name . "_" . $i . ".jpg";
+            echo "Cecio est le name de base ".$name;
+            $image_name = str_replace([" " , "'" , "  "], ["+","+","+"], $name);
+            echo "Ceci ezt le name final".$image_name ;
+            file_put_contents('../img/Monuments/' . $lastIdMonument . "/" . $image_name . "+" . $i . ".jpg", $image);
+            $final_name = $image_name . "+" . $i . ".jpg";
             $req5 = $bdd->prepare("INSERT INTO Image(Url , Id_Monument) VALUES ('$final_name', '$lastIdMonument') ");
             $req5->execute();
         } else {
