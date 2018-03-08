@@ -3,418 +3,251 @@
 
 
 
-<!-- BANNER SECTION -->
-<section class="clearfix homeBanner" style="background-image: url({{ path }}img/banner/banner1.jpg); padding: 0; height: 100%; width: 100%;" >
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="banerInfo" style="padding-top: 24%;">
-					<h1>Visit, Enjoy and Note</h1>
-					<p>NOm du site simplifies your discovery of the Paris' Monuments</p>
-					  <div class="m-t-5">
-					  	<button id="btn2" class="btn btn-success btn-bgcolor-blue">With Name</button>
-						<button id="btn1" class="btn btn-success btn-bgcolor-grey">With Type/City</button>
-			          </div>
-					<form class="form-inline hide" action="{{ path }}php/listeMonument.html" method="GET" id="form1" style="margin-top: 6%"><!-- La EXCEPTIONNELLEMNT ON LE MET EN GET-->
-						<div class="form-group" id="divcity">
-							<div class="input-group">
-								<div class="input-group-addon">City</div> <!-- METTRE UN NAME OBLIGATOIRE !!!! LA MAJUSCULE -->
-								<!--<input type="text" class="form-control" name="city" id="findItem" placeholder="What are you looking for?">-->
-								<select class="form-control" name="city" name="city">
-									{% for City in City %}
-									<option value="{{ City.Id }}">{{ City.Name }}</option>
-									{% endfor %}
-								</select>
-								<div class="input-group-addon addon-right"></div>
-							</div>
-						</div>
-						<div class="form-group" id="divtype">
-							<div class="input-group">
-								<div class="input-group-addon">Type</div>
-								<!-- <input type="text" class="form-control" name="type" id="nearLocation" placeholder="Type of monument"> -->
-								<select class="form-control" name="type" name="type">
-									{% for Type in Type %}
-									<option value="{{ Type.Id }}" >{{ Type.Name }} </option>
-									{% endfor %}
-								</select>
-								<div class="input-group-addon addon-right"><i class="icon-listy icon-target" aria-hidden="true"></i></div>
-							</div>
-						</div>
-						<button type="submit" class="btn btn-primary" id="btnsearch1">Search <i class="fa fa-search" aria-hidden="true"></i></button>
-					</form>
-					<form class="form-inline " action="index.html" method="GET" id="form2" style="margin-top: 6%"><!-- La EXCEPTIONNELLEMNT ON LE MET EN GET-->
-						<div class="form-group" id="divname">
-							<div class="input-group">
-								<div class="input-group-addon">Name</div>
-								<input type="text" class="form-control" name="name" id="nearLocation" placeholder="Name">
-								<div class="input-group-addon addon-right"><i class="icon-listy icon-target" aria-hidden="true"></i></div>
-							</div>
-						</div>
-							<button type="submit" class="btn btn-primary" id="btnsearch2">Search <i class="fa fa-search" aria-hidden="true"></i></button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col arrow-down">
-				<a href="#dop" class="arrow-down" id="arrow-d">
-					<i class="fa fa-arrow-circle-down fa-5x" aria-hidden="true" style="margin-top: 17% "></i>
-				</a>
-			</div>
-			<div class="col"></div>
-		</div>
-	</div>
-</section>
+    <!-- BANNER SECTION -->
+    <section class="clearfix homeBanner"
+             style="background-image: url({{ path }}img/banner/banner1.jpg); padding: 0; height: 100%; width: 100%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banerInfo" style="padding-top: 24%;">
+                        <h1>Visit, Enjoy and Note</h1>
+                        <p>NOm du site simplifies your discovery of the Paris' Monuments</p>
+                        <div class="m-t-5">
+                            <button id="btn2" class="btn btn-success btn-bgcolor-blue">With Name</button>
+                            <button id="btn1" class="btn btn-success btn-bgcolor-grey">With Type/City</button>
+                        </div>
+                        <form class="form-inline hide" action="{{ path }}php/listeMonument.php" method="GET" id="form1"
+                              style="margin-top: 6%"><!-- La EXCEPTIONNELLEMNT ON LE MET EN GET-->
+                            <div class="form-group" id="divcity">
+                                <div class="input-group">
+                                    <div class="input-group-addon">City</div>
+                                    <!-- METTRE UN NAME OBLIGATOIRE !!!! LA MAJUSCULE -->
+                                    <!--<input type="text" class="form-control" name="city" id="findItem" placeholder="What are you looking for?">-->
+                                    <select class="form-control" name="city" name="city">
+                                        {% for City in City %}
+                                            <option value="{{ City.Id }}">{{ City.Name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="input-group-addon addon-right"></div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divtype">
+                                <div class="input-group">
+                                    <div class="input-group-addon">Type</div>
+                                    <!-- <input type="text" class="form-control" name="type" id="nearLocation" placeholder="Type of monument"> -->
+                                    <select class="form-control" name="type" name="type">
+                                        {% for Type in Type %}
+                                            <option value="{{ Type.Id }}">{{ Type.Name }} </option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="input-group-addon addon-right"><i class="icon-listy icon-target"
+                                                                                  aria-hidden="true"></i></div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="btnsearch1">Search <i class="fa fa-search"
+                                                                                                    aria-hidden="true"></i>
+                            </button>
+                        </form>
+                        <form class="form-inline " action="{{ path }}php/listeMonument.php" method="GET" id="form2"
+                              style="margin-top: 6%"><!-- La EXCEPTIONNELLEMNT ON LE MET EN GET-->
+                            <div class="form-group" id="divname">
+                                <div class="input-group">
+                                    <div class="input-group-addon">Name</div>
+                                    <input type="text" class="form-control" name="name" id="nearLocation"
+                                           placeholder="Name">
+                                    <div class="input-group-addon addon-right"><i class="icon-listy icon-target"
+                                                                                  aria-hidden="true"></i></div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="btnsearch2">Search <i class="fa fa-search"
+                                                                                                    aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col arrow-down">
+                    <a href="#dop" class="arrow-down" id="arrow-d">
+                        <i class="fa fa-arrow-circle-down fa-5x" aria-hidden="true" style="margin-top: 12% "></i>
+                    </a>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </section>
 
-<!-- THINGS SECTION -->
-<section class="clearfix thingsArea" id = "dop">
-	<div class="container">
-		<div class="page-header text-center">
-			<h2>Popular Things Near You <small>This are some of most popular listing</small></h2>
-		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				<div id="thubmnailSlider" class="carousel slide thumbnailCarousel">
+    <!-- THINGS SECTION -->
+    <section class="clearfix thingsArea" id="dop">
+        <div class="container">
+            <div class="page-header text-center">
+                <h2>Top rated monuments
+                    <small>List of the best rated monuments</small>
+                </h2>
+            </div>
+            <div class="row">
+                {% if BestMonument is not null %}
+                    {% for Monument in BestMonument %}
+                        <div class="col-md-4 col-sm-6 col-xs-12"
+                             onclick="document.location.href='{{ path }}php/monumentDetail.php?q={{ Monument.Id_monument }}'">
+                            <div class="thingsBox thinsSpace">
+                                <div class="thingsImage" style="height: 400px;">
+                                    <img src="{{ path }}img/Monuments/{{ Monument.Id_monument }}/{{ Monument.Name_Monument|replace({' ': '+'}) }}+1.jpg"
+                                         alt="Image things" style="height: 400px; width: 100%;">
+                                    <div class="thingsMask">
+                                        <a href="{{ path }}php/monumentDetail.php?q={{ Monument.Id_monument }}">
+                                            <h2>{{ Monument.Name_Monument }} <i class="fa fa-check-circle"
+                                                                                aria-hidden="true"></i></h2></a>
 
-					<ol class="carousel-indicators">
-						<li data-target="#thubmnailSlider" data-slide-to="0" class="active"></li>
-						<li data-target="#thubmnailSlider" data-slide-to="1"></li>
-						<li data-target="#thubmnailSlider" data-slide-to="2"></li>
-						<li data-target="#thubmnailSlider" data-slide-to="3"></li>
-						<li data-target="#thubmnailSlider" data-slide-to="4"></li>
-						<li data-target="#thubmnailSlider" data-slide-to="5"></li>
-						<li data-target="#thubmnailSlider" data-slide-to="6"></li>
-						<li data-target="#thubmnailSlider" data-slide-to="7"></li>
-					</ol>
+                                    </div>
+                                </div>
+                                <div class="thingsCaption">
+                                    <ul class="list-inline captionItem">
+                                        <li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
+                                        {#<li><i class="fa fa-heart-o" aria-hidden="true"></i>  {{ Monument|last.totalLine }}</li>#}
+                                        <li><a href="#">{{ Monument.Type_Name }}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-sm-5"></div>
+                    <div class="col-sm-2 alert alert-warning">
+                        <p>Aucun élément trouvé ...</p>
+                    </div>
+                {% endif %}
 
-					<!-- Carousel items -->
-					<div class="carousel-inner">
+                {#<div class="item row">#}
+                {#<div class="col-md-4 col-sm-6 col-xs-12">#}
+                {#<div class="thingsBox">#}
+                {#<div class="thingsImage">#}
+                {#<img src="{{ path }}img/things/things-2.jpg" alt="Image things">#}
+                {#<div class="thingsMask">#}
+                {#<ul class="list-inline rating">#}
+                {#<li><i class="fa fa-star" aria-hidden="true"></i></li>#}
+                {#<li><i class="fa fa-star" aria-hidden="true"></i></li>#}
+                {#<li><i class="fa fa-star" aria-hidden="true"></i></li>#}
+                {#<li><i class="fa fa-star" aria-hidden="true"></i></li>#}
+                {#<li><i class="fa fa-star" aria-hidden="true"></i></li>#}
+                {#</ul>#}
+                {#<a href="blog-details.html"><h2>The City Theater</h2></a>#}
+                {#<p>10 Bay Street Toronto Ontario Canada</p>#}
+                {#</div>#}
+                {#</div>#}
+                {#<div class="thingsCaption ">#}
+                {#<ul class="list-inline captionItem">#}
+                {#<li><i class="fa fa-heart-o" aria-hidden="true"></i> 10 k</li>#}
+                {#<li><a href="category-list-full.html">Hotel, Restaurant</a></li>#}
+                {#</ul>#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
 
-						<div class="item row active">
-							<div class="col-md-4 col-sm-6 col-xs-12">
-								<div class="thingsBox">
-									<div class="thingsImage">
-										<img src="{{ path }}img/things/things-1.jpg" alt="Image things">
-										<div class="thingsMask">
-											<ul class="list-inline rating">
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											</ul>
-											<a href="blog-details.html"><h2>The City Theater <i class="fa fa-check-circle" aria-hidden="true"></i></h2></a>
-											<p>10 Bay Street Toronto Ontario Canada</p>
-										</div>
-									</div>
-									<div class="thingsCaption ">
-										<ul class="list-inline captionItem">
-											<li><i class="fa fa-heart-o" aria-hidden="true"></i> 10 k</li>
-											<li><a href="category-list-left.html">Hotel, Restaurant</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
+                {#</div>#}
 
-						<div class="item row">
-							<div class="col-md-4 col-sm-6 col-xs-12">
-								<div class="thingsBox">
-									<div class="thingsImage">
-										<img src="{{ path }}img/things/things-2.jpg" alt="Image things">
-										<div class="thingsMask">
-											<ul class="list-inline rating">
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											</ul>
-											<a href="blog-details.html"><h2>The City Theater</h2></a>
-											<p>10 Bay Street Toronto Ontario Canada</p>
-										</div>
-									</div>
-									<div class="thingsCaption ">
-										<ul class="list-inline captionItem">
-											<li><i class="fa fa-heart-o" aria-hidden="true"></i> 10 k</li>
-											<li><a href="category-grid-full.html">Hotel, Restaurant</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
+                {#<a class="left carousel-control" href="#thubmnailSlider" data-slide="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>#}
+                {#<a class="right carousel-control" href="#thubmnailSlider" data-slide="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>#}
+                {#</div>#}
+                {#</div>#}
+            </div>
+        </div>
+    </section>
 
-						<div class="item row">
-							<div class="col-md-4 col-sm-6 col-xs-12">
-								<div class="thingsBox">
-									<div class="thingsImage">
-										<img src="{{ path }}img/things/things-3.jpg" alt="Image things">
-										<div class="thingsMask">
-											<ul class="list-inline rating">
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											</ul>
-											<a href="blog-details.html"><h2>The City Theater <i class="fa fa-check-circle" aria-hidden="true"></i></h2></a>
-											<p>10 Bay Street Toronto Ontario Canada</p>
-										</div>
-									</div>
-									<div class="thingsCaption ">
-										<ul class="list-inline captionItem">
-											<li><i class="fa fa-heart-o" aria-hidden="true"></i> 10 k</li>
-											<li><a href="category-grid.html">Hotel, Restaurant</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="item row">
-							<div class="col-md-4 col-sm-6 col-xs-12">
-								<div class="thingsBox">
-									<div class="thingsImage">
-										<img src="{{ path }}img/things/things-1.jpg" alt="Image things">
-										<div class="thingsMask">
-											<ul class="list-inline rating">
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											</ul>
-											<a href="blog-details.html"><h2>The City Theater</h2></a>
-											<p>10 Bay Street Toronto Ontario Canada</p>
-										</div>
-									</div>
-									<div class="thingsCaption ">
-										<ul class="list-inline captionItem">
-											<li><i class="fa fa-heart-o" aria-hidden="true"></i> 10 k</li>
-											<li><a href="category-grid-full.html">Hotel, Restaurant</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="item row">
-							<div class="col-md-4 col-sm-6 col-xs-12">
-								<div class="thingsBox">
-									<div class="thingsImage">
-										<img src="{{ path }}img/things/things-2.jpg" alt="Image things">
-										<div class="thingsMask">
-											<ul class="list-inline rating">
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											</ul>
-											<a href="blog-details.html"><h2>The City Theater <i class="fa fa-check-circle" aria-hidden="true"></i></h2></a>
-											<p>10 Bay Street Toronto Ontario Canada</p>
-										</div>
-									</div>
-									<div class="thingsCaption ">
-										<ul class="list-inline captionItem">
-											<li><i class="fa fa-heart-o" aria-hidden="true"></i> 10 k</li>
-											<li><a href="category-list-right.html">Hotel, Restaurant</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="item row">
-							<div class="col-md-4 col-sm-6 col-xs-12">
-								<div class="thingsBox">
-									<div class="thingsImage">
-										<img src="{{ path }}img/things/things-3.jpg" alt="Image things">
-										<div class="thingsMask">
-											<ul class="list-inline rating">
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											</ul>
-											<a href="blog-details.html"><h2>The City Theater</h2></a>
-											<p>10 Bay Street Toronto Ontario Canada</p>
-										</div>
-									</div>
-									<div class="thingsCaption ">
-										<ul class="list-inline captionItem">
-											<li><i class="fa fa-heart-o" aria-hidden="true"></i> 10 k</li>
-											<li><a href="category-grid-full.html">Hotel, Restaurant</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="item row">
-							<div class="col-md-4 col-sm-6 col-xs-12">
-								<div class="thingsBox">
-									<div class="thingsImage">
-										<img src="{{ path }}img/things/things-1.jpg" alt="Image things">
-										<div class="thingsMask">
-											<ul class="list-inline rating">
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											</ul>
-											<a href="blog-details.html"><h2>The City Theater <i class="fa fa-check-circle" aria-hidden="true"></i></h2></a>
-											<p>10 Bay Street Toronto Ontario Canada</p>
-										</div>
-									</div>
-									<div class="thingsCaption ">
-										<ul class="list-inline captionItem">
-											<li><i class="fa fa-heart-o" aria-hidden="true"></i> 10 k</li>
-											<li><a href="category-grid.html">Hotel, Restaurant</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="item row">
-							<div class="col-md-4 col-sm-6 col-xs-12">
-								<div class="thingsBox">
-									<div class="thingsImage">
-										<img src="{{ path }}img/things/things-2.jpg" alt="Image things">
-										<div class="thingsMask">
-											<ul class="list-inline rating">
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											</ul>
-											<a href="blog-details.html"><h2>The City Theater</h2></a>
-											<p>10 Bay Street Toronto Ontario Canada</p>
-										</div>
-									</div>
-									<div class="thingsCaption ">
-										<ul class="list-inline captionItem">
-											<li><i class="fa fa-heart-o" aria-hidden="true"></i> 10 k</li>
-											<li><a href="category-list-full.html">Hotel, Restaurant</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-
-					<a class="left carousel-control" href="#thubmnailSlider" data-slide="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-					<a class="right carousel-control" href="#thubmnailSlider" data-slide="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<!-- WORKS SECTION -->
-<section class="clearfix worksArea">
-	<div class="container">
-		<div class="page-header text-center">
-			<h2>How it Works? </h2>
-		</div>
-		<div class="row">
-			<div class="col-sm-4 col-xs-12">
-				<div class="thumbnail text-center worksContent">
-					<img src="{{ path }}img/works/works-1.png" alt="Image works">
-					<div class="caption">
-						<a href="how-it-works.html"><h3>Find a Monument</h3></a>
-						<p>Whether you know the name or not, find the monument you are looking for.</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4 col-xs-12">
-				<div class="thumbnail text-center worksContent">
-					<img src="{{ path }}img/works/works-2.png" alt="Image works">
-					<div class="caption">
-						<a href="how-it-works.html"><h3>Plan ahead and make up your mind </h3></a>
-						<p>Consult the opening hours and see their popularity with users of " NOm DU SITE ".</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4 col-xs-12">
-				<div class="thumbnail text-center worksContent">
-					<img src="{{ path }}img/works/works-3.png" alt="Image works">
-					<div class="caption">
-						<a href="how-it-works.html"><h3>Give your opinion and Rate !</h3></a>
-						<p>Help other visitors to have a good time and record the monuments you visited. You can even post a comment to say what you think!</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="btnArea text-center"><a href="#" class="btn btn-primary">Watch it now <i class="fa fa-play-circle" aria-hidden="true"></i></a></div>
-			</div>
-		</div>
-	</div>
-</section>
+    <!-- WORKS SECTION -->
+    <section class="clearfix worksArea">
+        <div class="container">
+            <div class="page-header text-center">
+                <h2>How it Works? </h2>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-xs-12">
+                    <div class="thumbnail text-center worksContent  h-350">
+                        <img src="{{ path }}img/works/works-1.png" alt="Image works">
+                        <div class="caption">
+                            <a href="how-it-works.html"><h3>Find a Monument</h3></a>
+                            <p>Whether you know the name or not, find the monument you are looking for.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div class="thumbnail text-center worksContent  h-350">
+                        <img src="{{ path }}img/works/works-2.png" alt="Image works">
+                        <div class="caption">
+                            <a href="how-it-works.html"><h3>Plan ahead and make up your mind </h3></a>
+                            <p>Consult the opening hours and see their popularity with users of " NOm DU SITE ".</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div class="thumbnail text-center worksContent h-350">
+                        <img src="{{ path }}img/works/works-3.png" alt="Image works">
+                        <div class="caption">
+                            <a href="how-it-works.html"><h3>Give your opinion and Rate !</h3></a>
+                            <p>Help other visitors to have a good time and record the monuments you visited. You can
+                                even post a comment to say what you think!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
-{% block script %}
-  <script type="text/javascript">
-	$(document).ready(function(){
-	$("#btn2").click(function(){
-	$("#form2").removeClass("hide");
-	$("#form1").addClass("hide");
-	$("#btnsearch2").removeClass("hide");
-	$("#btnsearch1").addClass("hide");
-});
-	$("#btn1").click(function(){
-	$("#form2").addClass("hide");
-	$("#form1").removeClass("hide");
-	$("#btnsearch1").removeClass("hide");
-	$("#btnsearch2").addClass("hide");
+    {% block script %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#btn2").click(function () {
+                    $("#form2").removeClass("hide");
+                    $("#form1").addClass("hide");
+                    $("#btnsearch2").removeClass("hide");
+                    $("#btnsearch1").addClass("hide");
+                });
+                $("#btn1").click(function () {
+                    $("#form2").addClass("hide");
+                    $("#form1").removeClass("hide");
+                    $("#btnsearch1").removeClass("hide");
+                    $("#btnsearch2").addClass("hide");
 
-});
+                });
 
 
-
-//Fonction ANIMATION SCROOL 
+//Fonction ANIMATION SCROOL
 // Explication : On Cible avec $ tout les <a> qui on un href et on lui dit de faire un fonction lorsque tu clique dessus
-$('a[href^="#"]').click(function(){
-	//On recupere la valeur du href 
-	var the_id = $(this).attr("href");
+                $('a[href^="#"]').click(function () {
+                    //On recupere la valeur du href
+                    var the_id = $(this).attr("href");
 //On lui dit d'aniimé la page cad tout le HTML et BODY
-	$('html, body').animate({
-		//On lui dit de scrooler vers $(this_id) = href qu'on a recup juste avant 
-		//On scrool vers le haut : Mais sa c'est basique c'est presque tjr comme ca 
-		scrollTop:$(the_id).offset().top
-		//Slow c'est la rapidité qu'on va mettre pous aller faire ce chemin
-	}, 'slow');
-	//REtourne false pour ne plus avoir d'action apres 
-	// (apres un 'return' dasn un fonction le code de la fonction s'arreter il ne lis pas la suite )
-	//Exemple si tu mets alert(BLABLA) apres return il s'affichera pas si tu clique sur un <a> mais si tu enleve le return sa marceh 
-	// DErnier chose si tu cree un nouvelle fonction ou un nouveau truc en dessus de return mais que tu n'es pas dans la fontion ou il y'a le reutnr sa va marcher 
+                    $('html, body').animate({
+                        //On lui dit de scrooler vers $(this_id) = href qu'on a recup juste avant
+                        //On scrool vers le haut : Mais sa c'est basique c'est presque tjr comme ca
+                        scrollTop: $(the_id).offset().top
+                        //Slow c'est la rapidité qu'on va mettre pous aller faire ce chemin
+                    }, 'slow');
+                    //REtourne false pour ne plus avoir d'action apres
+                    // (apres un 'return' dasn un fonction le code de la fonction s'arreter il ne lis pas la suite )
+                    //Exemple si tu mets alert(BLABLA) apres return il s'affichera pas si tu clique sur un <a> mais si tu enleve le return sa marceh
+                    // DErnier chose si tu cree un nouvelle fonction ou un nouveau truc en dessus de return mais que tu n'es pas dans la fontion ou il y'a le reutnr sa va marcher
 
-	return false;
-});
- 
-document.addEventListener('DOMContentLoaded', function() {
-  window.onscroll = function(ev) {
-    document.getElementById("cRetour").className = (window.pageYOffset > 100) ? "cVisible" : "cInvisible";
-  };
-});
-    });
+                    return false;
+                });
+
+                document.addEventListener('DOMContentLoaded', function () {
+                    window.onscroll = function (ev) {
+                        document.getElementById("cRetour").className = (window.pageYOffset > 100) ? "cVisible" : "cInvisible";
+                    };
+                });
+            });
 
 
+        </script>
+    {% endblock %}
 
-  </script>
-	{% endblock %}
+    </body>
 
-</body>
-
-</html>
+    </html>
 {% endblock %}
