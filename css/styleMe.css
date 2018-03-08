@@ -208,6 +208,9 @@ a#cRetour.cVisible{
     width: 300px !important;;
     height: 300px !important;;
 }
+.h-350{
+    height:350px;
+}
 .arrow{
 background-color: black !important;
 }
