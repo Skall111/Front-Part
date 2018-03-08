@@ -20,17 +20,16 @@
 <!-- THINGS SECTION -->
 <section class="clearfix thingsArea">
 	<div class="container">
-		<div class="page-header text-center">
-			<h2>Popular Things Near You <small>This are some of most popular listing</small></h2>
-		</div>
 		<div class="row" id="content">
+            {% if Monument is not null %}
             {% for Monument in Monument %}
 			<div class="col-md-4 col-sm-6 col-xs-12" onclick="document.location.href='{{ path }}php/monumentDetail.php?q={{ Monument.Id_monument }}'">
 				<div class="thingsBox thinsSpace">
-					<div class="thingsImage">
-						<img src="{{ path }}img/Monuments/{{ Monument.Id_monument }}/{{ Monument.Name_Monument|replace({' ': '_'}) }}_1.jpg" alt="Image things">
+					<div class="thingsImage" style="height: 400px;">
+						<img src="{{ path }}img/Monuments/{{ Monument.Id_monument }}/{{ Monument.Name_Monument|replace({' ': '+'}) }}+1.jpg" alt="Image things" style="height: 400px; width: 100%;">
 						<div class="thingsMask">
 							<ul class="list-inline rating">
+                                {% if Monument|last.totalRating > 0 %}
                                 {% set Rating = Monument|last.totalRating / Monument|last.totalLine %}
                                 {% if Rating|round == 1 %}
 								<li><i class="fa fa-star" aria-hidden="true"></i></li>
@@ -63,6 +62,7 @@
                                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
                                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
                                 {% endif %}
+                                {% endif %}
 
 
 
@@ -80,6 +80,12 @@
 				</div>
 			</div>
 {% endfor %}
+            {% else %}
+                <div class="col-sm-5"></div>
+            <div class="col-sm-2 alert alert-warning">
+                <p>Aucun élément trouvé ...</p>
+            </div>
+            {% endif %}
 
 
 			<div class="col-xs-12 toFade">
