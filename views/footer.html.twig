@@ -14,7 +14,7 @@
                         <p>This site allows visitors to make visiting the monuments of Paris easier. If a monument is missing or if you have any ideas for improvement, do not hesitate to contact us through the link below ;)</p>
                         <ul class="list-styled list-contact">
                             <li><i class="fa fa-phone" aria-hidden="true"></i>06.11.21.90.67</li>
-                            <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="#">contact@lesbogoss.com</a></li>
+                            <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:contact@bendezign.ovh">contact@bendezign.ovh</a></li>
                         </ul>
                     </div>
                 </div>
@@ -64,6 +64,13 @@
 <script src="{{ path }}plugins/sweetalert2/dist/sweetalert2.js"></script>
 <!-- JAVASCRIPTS -->
 {% block script %} {% endblock %}
+    <script>
+        {% if success is defined and success.0 is not null %}
+        swal('Génial' ,'{{ success.0 }}' , 'success');
+        {% elseif  errors is defined and errors.0 is not null %}
+        swal('Oups ...' ,'{{ errors.0 }}' , 'error');
+        {% endif %}
+    </script>
 <script src="{{ path }}js/single-map.js"></script>
 <script src="{{ path }}js/map.js"></script>
 
