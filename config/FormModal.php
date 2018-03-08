@@ -1,13 +1,20 @@
 <?php
+$success = [] ;
+$errors = [] ;
 if (isset($_POST['type'])) {
-    if ($_POST['type'] == 1) {
+    if ($_POST['type'] == '1') {
         $name = $db->quote($_POST['firstname']);
         $surname = $db->quote($_POST['lastname']);
         $mail = $db->quote($_POST['youremail']);
         $pass = md5($_POST['password']);
-        $db->query("INSERT INTO User(Name , Surname , Password , Mail) VALUES ($name , $surname , '$pass' , $mail )", ['1', '2']);
+        $inscrit = $db->query("INSERT INTO User(Name , Surname , Password , Mail) VALUES ($name , $surname , '$pass' , $mail )", ['1', '2']);
         $valid = 1;
-    } elseif ($_POST['type'] == 2) {
+        if($inscrit){
+            $success[] = 'Inscritpion Reussi';
+        }else{
+            $errors[] = 'Inscritpion Echoué';
+        }
+    } elseif ($_POST['type'] == '2') {
         $mail = $db->quote($_POST['email']);
         $pass = md5($_POST['password']);
         $connect = $db->query("SELECT * FROM User WHERE Mail = $mail AND Password = '$pass' ")->fetch();
@@ -17,7 +24,7 @@ if (isset($_POST['type'])) {
         } else {
             $errors[] = 'Connexion Echoué';
         }
-    } elseif ($_POST['type'] == 3) {
+    } elseif ($_POST['type'] == '3') {
         $mail = $db->quote($_POST['email']);
         $connect = $db->query("SELECT * FROM User WHERE Mail = $mail")->fetch();
         if ($connect) {
@@ -40,11 +47,11 @@ if (isset($_POST['type'])) {
                 $error[] = 'Le message n\'a pas pu être envoyé.';
                 $error[] = 'Mailer Error: ' . $PHPmail->ErrorInfo;
             } else {
-                $error[] = 'Un nouveau mot de passe vous a été envoyer ';
+                $success[] = 'Un nouveau mot de passe vous a été envoyer ';
                 $db->query("UPDATE User Set Password = '$newpasscrypt' WHERE Id = $id ", ['1', '2']);
             }
         } else {
-            $error[] = 'Aucun utilisateur n\'a été toruvé avec cette Email ';
+            $errors[] = 'Aucun utilisateur n\'a été toruvé avec cette Email ';
         }
     }
 }
