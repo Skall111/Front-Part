@@ -21,7 +21,7 @@ $reponse = "Fichier trop volumineux";
 // on copie le fichier dans le dossier de destination
 $name_file = $_FILES['fichier']['name'];
 $number = $_POST['number']+1;
-$new_name = str_replace(" ","_" , $_POST['name_mon'])."_".$number.".jpg";
+$new_name = str_replace(" ","+" , $_POST['name_mon'])."+".$number.".jpg";
 
 if( !move_uploaded_file($tmp_file, $content_dir  .  $new_name) )
 {
