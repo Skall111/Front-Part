@@ -4,7 +4,7 @@ $db = App::getDatabase();
 $paginationLast = $_POST['pagination'] - 1;
 $pagination = $_POST['pagination'];
 $path = $_POST['path'];
-$listeMonument = $db->query("SELECT *  , M.Id AS Id_monument , M.Name AS Name_Monument FROM Monument AS M 
+$listeMonument = $db->query("SELECT *  , M.Id AS Id_monument , M.Name AS Name_Monument , T.Name AS Type_Name FROM Monument AS M 
                                   LEFT JOIN Avoir AS A ON M.Id = A.Id_Monument 
                                   LEFT JOIN Type AS T ON A.Id_Type = T.Id
                                   ORDER BY M.Id
@@ -35,7 +35,7 @@ if ($listeMonument && count($listeMonuments) > 0) {
         echo '<div class="col-md-4 col-sm-6 col-xs-12" onclick="document.location.href=\'' . $path . 'php/monumentDetail.php?q=' . $item['Id_monument'] . '\'">
 				<div class="thingsBox thinsSpace">
 					<div class="thingsImage" style="height: 400px ; ">
-						<img src="' . $path . 'img/Monuments/' . $item['Id_monument'] . '/' . str_replace(" ", "_", $item['Name_Monument']) . '_1.jpg" alt="Image things" style="height: 400px ; width: 100% ; ">
+						<img src="' . $path . 'img/Monuments/' . $item['Id_monument'] . '/' . str_replace(array(" " ,"'"), array("+" , "+"), $item['Name_Monument']) . '+1.jpg" alt="'.$item['Name_Monument'].'" style="height: 400px ; width: 100% ; ">
 						<div class="thingsMask" >
 							<ul class="list-inline rating">';
         $Rating = $rate['totalRating'] / $rate['totalLine'];
@@ -79,7 +79,7 @@ if ($listeMonument && count($listeMonuments) > 0) {
 					</div>
 					<div class="thingsCaption ">
 						<ul class="list-inline captionItem">
-							<li><i class="fa fa-heart-o" aria-hidden="true"></i>' . $item[sizeof($item) - 1]['totalLine'] . '</li>
+							<li><i class="fa fa-heart-o" aria-hidden="true"></i>' . $rate['totalLine'] . '</li>
 							<li><a href="#">' . $item['Type_Name'] . '</a></li>
 						</ul>
 					</div>
