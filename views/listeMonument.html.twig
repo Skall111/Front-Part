@@ -171,27 +171,27 @@
           <h4 class="modal-title">Looking for another monument? That's not a problem!</h4>
         </div>
         <div class="modal-body">
-         <form class="form-inline form-group" action="index.html" method="GET" id="form1"><!-- La EXCEPTIONNELLEMNT ON LE MET EN GET-->
+         <form class="form-group" action="index.html" method="GET" id="form1"><!-- La EXCEPTIONNELLEMNT ON LE MET EN GET-->
             <div class="form-group" id="divcity">
-              <div class="input-group" style="width: 180%; padding-top: 10%">
+              <div class="input-group" style="width: 100%; padding: 10%">
                 <div class="input-group-addon" >City</div> <!-- METTRE UN NAME OBLIGATOIRE !!!! LA MAJUSCULE -->
                 <!--<input type="text" class="form-control" name="city" id="findItem" placeholder="What are you looking for?">-->
                 <select id="formCity" class="form-control" name="city" name="city" >
-                  <option>City 1 </option>
-                  <option>City 2 </option>
-                  <option>City 3 </option>
+                    {% for City in City %}
+                        <option value="{{ City.Id }}">{{ City.Name }}</option>
+                    {% endfor %}
                 </select>
                 <div class="input-group-addon addon-right" ></div>
               </div>
             </div>
             <div class="form-group" id="divtype">
-              <div class="input-group" style="width: 160%; padding-top: 15%; padding-bottom: 15%; ">
+              <div class="input-group" style="width: 100%; padding: 10%; ">
                 <div class="input-group-addon" >Type</div>
                 <!-- <input type="text" class="form-control" name="type" id="nearLocation" placeholder="Type of monument"> -->
                 <select id="formType" class="form-control" name="type" name="type" >
-                  <option>Type 1 </option>
-                  <option>Type 2 </option>
-                  <option>Type 3 </option>
+                    {% for Type in Type %}
+                        <option value="{{ Type.Id }}">{{ Type.Name }} </option>
+                    {% endfor %}
                 </select>
                 <div class="input-group-addon addon-right" style="width: 19%; "></div>
               </div>

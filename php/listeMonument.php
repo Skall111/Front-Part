@@ -24,6 +24,9 @@ if(isset($_GET)){
 $db = App::getDatabase();
 include '../config/FormModal.php';
 
+$listeCity= $db->query("SELECT * FROM City ")->fetchAll();
+$listeType = $db->query("SELECT * FROM Type ")->fetchAll();
+
 $listeMonument= $db->query("SELECT *  , M.Id AS Id_monument , M.Name AS Name_Monument , T.Name AS Type_Name FROM Monument AS M 
                                   LEFT JOIN Avoir AS A ON M.Id = A.Id_Monument 
                                   LEFT JOIN Type AS T ON A.Id_Type = T.Id
@@ -58,6 +61,8 @@ foreach ($comments as $comment){
 //include 'JsonData.php';
 $parametre =
 [
+'City' => $listeCity,
+'Type'=> $listeType,
 'nom' => 'Benj',
 'prenom'=> 'Le Boss',
 'metier'=> 'Developpeur',
