@@ -36,12 +36,8 @@ if (isset($_POST) && !empty($_POST)) {
     echo $name = $result->result->name;echo '<br>';
     echo $lat = $result->result->geometry->location->lat;echo '<br>';
     echo $lon = $result->result->geometry->location->lng;echo '<br>';
-//    echo $cp = $result->result->address_components[7]->long_name;echo '<br>';
     $name_value = addslashes($name);
-//    stripslashes($monument);//Pour recup le nom sans mles slash
-    //EXAMPLEEEE
     echo "INSERT INTO Monument(Name , Lat, Lon , Id_City) VALUES ('$name_value' , '$lat' , '$lon' ,'$city')";echo '<br>';
-    //https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJLU7jZClu5kcR4PcOOO6p3I0&key=AIzaSyDCHntX1dfipLoTZzz-hz-waNxTewkUjIk
     $req = $bdd->prepare("INSERT INTO Monument(Name , Lat, Lon , Id_City) VALUES ('$name_value' , '$lat' , '$lon' ,'$city')");
     $req->execute();
     $lastIdMonument = $bdd->lastInsertId();
@@ -142,12 +138,7 @@ if (isset($_POST) && !empty($_POST)) {
 </head>
 
 <body>
-<h3>Enregistrement par adresse : </h3>
-<div id="locationField">
-    <input id="autocomplete" size="50" placeholder="Enter your address"
-           type="text"></input>
-    <button onclick="getdetail();">Valider</button>
-</div>
+
 <h3>Enregistrement par Place Id : </h3>
 <form method="POST">
     <label>Place Id : </label>
