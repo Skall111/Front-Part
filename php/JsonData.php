@@ -5,7 +5,8 @@
  * Date: 06/01/2018
  * Time: 21:28
  */
-
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 include '../config/variables.inc.php';
 require 'autoload.php';
 $db = App::getDatabase();

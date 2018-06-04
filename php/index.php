@@ -13,7 +13,6 @@ $valid  = 0 ;
 $error = [];
 $listeCity= $db->query("SELECT * FROM City ")->fetchAll();
 $listeType = $db->query("SELECT * FROM Type ")->fetchAll();
-
 $reqBestMonument = "SELECT *  , M.Id AS Id_monument , M.Name AS Name_Monument , T.Name AS Type_Name 
                                   FROM Monument AS M 
                                   LEFT JOIN Avoir AS A ON M.Id = A.Id_Monument 

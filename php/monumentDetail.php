@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 require_once '../vendor/autoload.php';
 include '../config/variables.inc.php';
 require 'autoload.php';
@@ -25,15 +28,15 @@ if(isset($_POST['Review'])){
 $listeMonument= $db->query("SELECT *  , M.Id AS Id_monument , M.Name AS Name_Monument FROM Monument AS M 
                                   LEFT JOIN Avoir AS A ON M.Id = A.Id_Monument 
                                   LEFT JOIN Type AS T ON A.Id_Type = T.Id
-                                  WHERE M.Id = $idMonument")->fetch();
+                                  WHERE M.Id = '$idMonument'")->fetch();
 
 $count = 0;
 $totalComment = 0;
 
     $comments = $db->query("SELECT * FROM Comments AS C 
-                              LEFT JOIN Afficher  AS AF ON C.Id = AF.Id_Comments
+                              LEFT JOIN Afficher AS AF ON C.Id = AF.Id_Comments
                               LEFT JOIN User AS U ON AF.Id_User = U.Id
-                              WHERE AF.Id_Monument = $idMonument")->fetchAll();
+                              WHERE AF.Id_Monument = '$idMonument'")->fetchAll();
     $totalComment = 0 ;
     $count = 0 ;
     foreach ($comments as $comment){
@@ -45,7 +48,7 @@ $totalComment = 0;
     ];
 //    $listeMonuments[] = array_merge($listeMonument , $comments);
 $Horaire = $db->query("SELECT * FROM Ouvrir LEFT JOIN Calendar ON Ouvrir.Id_Calendar = Calendar.Id WHERE Id_Monument = $idMonument")->fetchAll();
-$Images = $db->query("SELECT * FROM Image LEFT JOIN Monument ON image.Id_Monument = Monument.Id WHERE Id_Monument = $idMonument")->fetchAll();
+$Images = $db->query("SELECT * FROM Image LEFT JOIN Monument ON Image.Id_Monument = Monument.Id WHERE Id_Monument = $idMonument")->fetchAll();
 //echo '<pre>';
 //print_r($listeMonument);
 //echo '</pre>';

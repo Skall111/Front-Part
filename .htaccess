@@ -1,0 +1,3 @@
+RewriteCond %{HTTP_HOST} ^pmh.bendezign.ovh$
+RewriteRule ^(.*) https://www.pmh.bendezign.ovh/  [QSA,L,R=301]
+

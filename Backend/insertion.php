@@ -18,9 +18,9 @@ function getimg($url)
 }
 
     $host = "localhost";
-    $db = "monument";
-    $userbdd = "root";
-    $passbdd = "root";
+    $db = "Monument";
+    $userbdd = "dbpmh";
+    $passbdd = "dbPmhOfione2018*";
     $bdd = new PDO("mysql:host=$host;dbname=$db;", $userbdd, $passbdd);
 if (isset($_POST) && !empty($_POST)) {
     echo "https://maps.googleapis.com/maps/api/place/details/json?placeid=" . $_POST['place_id'] . "&key=AIzaSyDCHntX1dfipLoTZzz-hz-waNxTewkUjIk";
